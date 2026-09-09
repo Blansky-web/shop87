@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop87 - Admin Panel</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .admin-container {
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            background: #1a1a1a;
+            padding: 40px;
+            border-radius: 12px;
+            border: 2px solid #D4AF37;
+            box-shadow: 0 20px 60px rgba(139, 0, 0, 0.3);
+        }
+        
+        .admin-logo {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #F4D03F, #D4AF37, #996515);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 30px;
+        }
+        
+        .admin-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #D4AF37;
+        }
+        
+        .admin-description {
+            margin-bottom: 30px;
+            color: #ccc;
+            line-height: 1.6;
+        }
+        
+        .admin-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: #8B0000;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            border: 2px solid #D4AF37;
+            transition: all 0.3s;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+        
+        .admin-btn:hover {
+            background: #5C0000;
+            border-color: #F4D03F;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(139, 0, 0, 0.4);
+        }
+        
+        .admin-info {
+            margin-top: 30px;
+            padding: 20px;
+            background: #0a0a0a;
+            border-radius: 8px;
+            border: 1px solid #996515;
+        }
+        
+        .admin-info h3 {
+            color: #D4AF37;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .admin-info ol {
+            text-align: left;
+            margin-left: 20px;
+            color: #ccc;
+        }
+        
+        .admin-info li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <div class="admin-logo">Shop87</div>
+        <h1 class="admin-title">Pannello di Amministrazione</h1>
+        <p class="admin-description">
+            Gestisci i prodotti del tuo negozio in modo semplice e veloce.
+            Effettua il login con il tuo account GitHub per accedere al pannello.
+        </p>
+        
+        <button class="admin-btn" onclick="redirectToCMS()">
+            🔐 Accedi al Pannello
+        </button>
+        
+        <div class="admin-info">
+            <h3>📋 Come funziona:</h3>
+            <ol>
+                <li>Clicca sul pulsante "Accedi al Pannello"</li>
+                <li>Autorizza con il tuo account GitHub</li>
+                <li>Gestisci prodotti, immagini e disponibilità</li>
+                <li>Le modifiche saranno pubblicate automaticamente</li>
+            </ol>
+        </div>
+    </div>
+    
+    <script>
+        function redirectToCMS() {
+            // Reindirizza a Sveltia CMS con il file di configurazione
+            window.location.href = 'https://sveltia-cms.netlify.app/admin/index.html?config=/admin/config.yml';
+        }
+    </script>
+</body>
+</html>
