@@ -2,6 +2,8 @@ backend:
   name: github
   repo: Blansky-web/shop87
   branch: main
+  base_url: gleaming-youtiao-b5329e.netlify.app
+  auth_endpoint: /api/auth
 
 media_folder: "uploads"
 public_folder: "/uploads"
