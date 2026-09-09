@@ -113,7 +113,7 @@
             Effettua il login con il tuo account GitHub per accedere al pannello.
         </p>
         
-        <button class="admin-btn" onclick="redirectToCMS()">
+        <button class="admin-btn" onclick="window.location.href='/admin/'">
             🔐 Accedi al Pannello
         </button>
         
@@ -128,11 +128,77 @@
         </div>
     </div>
     
+    <!-- Decap CMS Script -->
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
     <script>
-        function redirectToCMS() {
-            const configUrl = '/admin/config.yml';
-            // Reindirizza a Sveltia CMS con il file di configurazione
-            window.location.href = 'https://sveltia-cms.netlify.app/admin/index.html?config=/admin/config.yml';
+        // Inizializza automaticamente Decap CMS
+        if (window.CMS) {
+            CMS.init({
+                config: {
+                    backend: {
+                        name: 'github',
+                        repo: 'Blansky-web/shop87',
+                        branch: 'main'
+                    },
+                    media_folder: 'uploads',
+                    public_folder: '/uploads',
+                    collections: [
+                        {
+                            name: 'prodotti',
+                            label: 'Prodotti',
+                            folder: 'products',
+                            create: true,
+                            slug: '{{slug}}',
+                            format: 'json',
+                            fields: [
+                                { label: 'ID', name: 'id', widget: 'number', required: true },
+                                { label: 'Nome Prodotto', name: 'name', widget: 'string', required: true },
+                                { 
+                                    label: 'Categoria', 
+                                    name: 'category', 
+                                    widget: 'select', 
+                                    options: [
+                                        'Sneakers', 'Scarpe per bambini', 'Scarpe da uomo', 
+                                        'Scarpe da donna', 'Ciabatte', 'Giacca invernale', 
+                                        'Giacca', 'Felpe', 'Pantaloni', 'Maglietta', 
+                                        'Borsa', 'Tuta sportiva', 'Cintura', 'Cappello', 
+                                        'Occhiali da sole', 'Orologio'
+                                    ], 
+                                    required: true 
+                                },
+                                { label: 'Prezzo', name: 'price', widget: 'string', required: true },
+                                { 
+                                    label: 'Taglie', 
+                                    name: 'sizes', 
+                                    widget: 'list', 
+                                    required: false,
+                                    default: ['39', '40', '41', '42', '43', '44']
+                                },
+                                { label: 'Disponibile', name: 'available', widget: 'boolean', default: true },
+                                { label: 'Descrizione', name: 'description', widget: 'text', required: false },
+                                {
+                                    label: 'Immagini',
+                                    name: 'images',
+                                    widget: 'list',
+                                    required: true,
+                                    field: {
+                                        label: 'Immagine',
+                                        name: 'image',
+                                        widget: 'image'
+                                    }
+                                },
+                                { 
+                                    label: 'Modello 3D (.glb/.gltf)', 
+                                    name: 'model3d', 
+                                    widget: 'string', 
+                                    required: false,
+                                    hint: 'URL del file .glb o .gltf per la visualizzazione 3D'
+                                }
+                            ]
+                        }
+                    ]
+                }
+            });
         }
     </script>
 </body>
