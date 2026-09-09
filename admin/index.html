@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop87 - Admin Panel</title>
+    <title>Shop87 - Gestione Prodotti</title>
     <style>
         * {
             margin: 0;
@@ -12,52 +12,55 @@
         }
         
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Inter', -apple-system, sans-serif;
             background: #0a0a0a;
             color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            margin: 0;
             padding: 20px;
         }
         
-        .admin-container {
+        .admin-header {
             text-align: center;
-            max-width: 500px;
-            width: 100%;
+            margin-bottom: 30px;
+            padding: 20px;
             background: #1a1a1a;
-            padding: 40px;
-            border-radius: 12px;
             border: 2px solid #D4AF37;
-            box-shadow: 0 20px 60px rgba(139, 0, 0, 0.3);
+            border-radius: 8px;
         }
         
         .admin-logo {
             font-family: 'Cinzel', serif;
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 900;
             background: linear-gradient(135deg, #F4D03F, #D4AF37, #996515);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 30px;
         }
         
         .admin-title {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
             color: #D4AF37;
+            margin-top: 10px;
         }
         
-        .admin-description {
+        .instructions {
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #996515;
             margin-bottom: 30px;
-            color: #ccc;
-            line-height: 1.6;
         }
         
-        .admin-btn {
+        .instructions h2 {
+            color: #D4AF37;
+            margin-bottom: 15px;
+        }
+        
+        .instructions ol {
+            margin-left: 20px;
+            line-height: 2;
+        }
+        
+        .github-link {
             display: inline-block;
             padding: 15px 30px;
             background: #8B0000;
@@ -68,143 +71,133 @@
             letter-spacing: 1px;
             border: 2px solid #D4AF37;
             transition: all 0.3s;
-            cursor: pointer;
-            font-size: 1.1rem;
+            margin-top: 15px;
+            text-align: center;
         }
         
-        .admin-btn:hover {
+        .github-link:hover {
             background: #5C0000;
             border-color: #F4D03F;
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(139, 0, 0, 0.4);
         }
         
-        .admin-info {
-            margin-top: 30px;
-            padding: 20px;
-            background: #0a0a0a;
+        .product-form {
+            background: #1a1a1a;
+            padding: 25px;
             border-radius: 8px;
             border: 1px solid #996515;
         }
         
-        .admin-info h3 {
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
             color: #D4AF37;
-            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            background: #0a0a0a;
+            border: 1px solid #996515;
+            color: #fff;
+            border-radius: 4px;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: #8B0000;
+            color: #fff;
+            border: 2px solid #D4AF37;
+            border-radius: 6px;
             font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            letter-spacing: 1px;
         }
         
-        .admin-info ol {
-            text-align: left;
-            margin-left: 20px;
-            color: #ccc;
-        }
-        
-        .admin-info li {
-            margin-bottom: 10px;
+        .submit-btn:hover {
+            background: #5C0000;
         }
     </style>
 </head>
 <body>
-    <div class="admin-container" id="adminContainer">
+    <div class="admin-header">
         <div class="admin-logo">Shop87</div>
-        <h1 class="admin-title">Pannello di Amministrazione</h1>
-        <p class="admin-description">
-            Gestisci i prodotti del tuo negozio in modo semplice e veloce.
-            Effettua il login con il tuo account GitHub per accedere al pannello.
-        </p>
-        
-        <button class="admin-btn" onclick="initCMS()">
-            🔐 Accedi al Pannello
-        </button>
-        
-        <div class="admin-info">
-            <h3>📋 Come funziona:</h3>
-            <ol>
-                <li>Clicca sul pulsante "Accedi al Pannello"</li>
-                <li>Autorizza con il tuo account GitHub</li>
-                <li>Gestisci prodotti, immagini e disponibilità</li>
-                <li>Le modifiche saranno pubblicate automaticamente</li>
-            </ol>
-        </div>
+        <h1 class="admin-title">Pannello di Gestione Prodotti</h1>
     </div>
     
-    <!-- Decap CMS Script -->
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-    <script>
-        function initCMS() {
-            // Nascondi il contenitore iniziale
-            document.getElementById('adminContainer').style.display = 'none';
-            
-            // Inizializza Decap CMS con configurazione inline
-            if (window.CMS) {
-                CMS.init({
-                    config: {
-                        backend: {
-                            name: 'github',
-                            repo: 'Blansky-web/shop87',
-                            branch: 'main'
-                        },
-                        media_folder: 'uploads',
-                        public_folder: '/uploads',
-                        collections: [
-                            {
-                                name: 'prodotti',
-                                label: 'Prodotti',
-                                folder: 'products',
-                                create: true,
-                                slug: '{{slug}}',
-                                format: 'json',
-                                fields: [
-                                    { label: 'ID', name: 'id', widget: 'number', required: true },
-                                    { label: 'Nome Prodotto', name: 'name', widget: 'string', required: true },
-                                    { 
-                                        label: 'Categoria', 
-                                        name: 'category', 
-                                        widget: 'select', 
-                                        options: [
-                                            'Sneakers', 'Scarpe per bambini', 'Scarpe da uomo', 
-                                            'Scarpe da donna', 'Ciabatte', 'Giacca invernale', 
-                                            'Giacca', 'Felpe', 'Pantaloni', 'Maglietta', 
-                                            'Borsa', 'Tuta sportiva', 'Cintura', 'Cappello', 
-                                            'Occhiali da sole', 'Orologio'
-                                        ], 
-                                        required: true 
-                                    },
-                                    { label: 'Prezzo', name: 'price', widget: 'string', required: true },
-                                    { 
-                                        label: 'Taglie', 
-                                        name: 'sizes', 
-                                        widget: 'list', 
-                                        required: false,
-                                        default: ['39', '40', '41', '42', '43', '44']
-                                    },
-                                    { label: 'Disponibile', name: 'available', widget: 'boolean', default: true },
-                                    { label: 'Descrizione', name: 'description', widget: 'text', required: false },
-                                    {
-                                        label: 'Immagini',
-                                        name: 'images',
-                                        widget: 'list',
-                                        required: true,
-                                        field: {
-                                            label: 'Immagine',
-                                            name: 'image',
-                                            widget: 'image'
-                                        }
-                                    },
-                                    { 
-                                        label: 'Modello 3D (.glb/.gltf)', 
-                                        name: 'model3d', 
-                                        widget: 'string', 
-                                        required: false,
-                                        hint: 'URL del file .glb o .gltf per la visualizzazione 3D'
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                });
-            }
-        }
-    </script>
+    <div class="instructions">
+        <h2>📋 Come gestire i prodotti:</h2>
+        <ol>
+            <li>Clicca sul pulsante qui sotto per aprire GitHub</li>
+            <li>Vai nella cartella <code>products</code></li>
+            <li>Clicca "Add file" → "Create new file"</li>
+            <li>Nome file: <code>nome-prodotto.json</code></li>
+            <li>Copia e incolla il template JSON qui sotto</li>
+            <li>Modifica con i dati del tuo prodotto</li>
+            <li>Clicca "Commit new file"</li>
+        </ol>
+        <a href="https://github.com/Blansky-web/shop87/tree/main/products" class="github-link" target="_blank">
+            📂 Apri GitHub per Gestire i Prodotti
+        </a>
+    </div>
+    
+    <div class="product-form">
+        <h2 style="color: #D4AF37; margin-bottom: 20px;">📝 Template Prodotto JSON</h2>
+        <div class="form-group">
+            <label>Copia questo template:</label>
+            <textarea readonly>
+{
+  "id": 7,
+  "name": "Nome Prodotto",
+  "category": "Categoria",
+  "price": "€99.00",
+  "sizes": ["S", "M", "L", "XL"],
+  "available": true,
+  "images": [
+    "https://esempio.com/immagine1.jpg",
+    "https://esempio.com/immagine2.jpg"
+  ],
+  "model3d": null,
+  "description": "Descrizione del prodotto"
+}
+            </textarea>
+        </div>
+        <div class="form-group">
+            <label>Categorie disponibili:</label>
+            <select>
+                <option>Sneakers</option>
+                <option>Scarpe per bambini</option>
+                <option>Scarpe da uomo</option>
+                <option>Scarpe da donna</option>
+                <option>Ciabatte</option>
+                <option>Giacca invernale</option>
+                <option>Giacca</option>
+                <option>Felpe</option>
+                <option>Pantaloni</option>
+                <option>Maglietta</option>
+                <option>Borsa</option>
+                <option>Tuta sportiva</option>
+                <option>Cintura</option>
+                <option>Cappello</option>
+                <option>Occhiali da sole</option>
+                <option>Orologio</option>
+            </select>
+        </div>
+    </div>
 </body>
 </html>
