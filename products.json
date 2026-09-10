@@ -22,6 +22,48 @@
           "color2": "#FFFFFF",
           "color3": "#008000",
           "images": []
+        },
+        {
+          "name": "Verde",
+          "color1": "#008000",
+          "color2": "",
+          "color3": "",
+          "images": []
+        },
+        {
+          "name": "Nero",
+          "color1": "#000000",
+          "color2": "",
+          "color3": "",
+          "images": []
+        },
+        {
+          "name": "Bianco",
+          "color1": "#FFFFFF",
+          "color2": "",
+          "color3": "",
+          "images": []
+        },
+        {
+          "name": "Viola",
+          "color1": "#6A0DAD",
+          "color2": "",
+          "color3": "",
+          "images": []
+        },
+        {
+          "name": "Grigio",
+          "color1": "#808080",
+          "color2": "",
+          "color3": "",
+          "images": []
+        },
+        {
+          "name": "Arancione",
+          "color1": "#FFA500",
+          "color2": "",
+          "color3": "",
+          "images": []
         }
       ],
       "images": [],
