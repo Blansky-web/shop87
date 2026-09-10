@@ -2,7 +2,7 @@ backend:
   name: github
   repo: Blansky-web/shop87
   branch: main
-  base_url: https://shop87.vercel.app/
+  base_url: https://shop87.dellostrettogabriele.workers.dev
   auth_endpoint: /api/auth
 
 media_folder: "uploads"
