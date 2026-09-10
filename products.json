@@ -1,10 +1,12 @@
 {
   "prodotti": [
     {
-      "id": 1,
       "name": "fidate fra",
       "category": "Sneakers",
       "price": "111111",
+      "available": true,
+      "description": "",
+      "id": 1,
       "sizes": [
         "39",
         "40",
@@ -13,8 +15,15 @@
         "43",
         "44"
       ],
-      "available": true,
-      "description": "",
+      "colors": [
+        {
+          "name": "Verde",
+          "color1": "#000000",
+          "color2": "#FFFFFF",
+          "color3": "#008000",
+          "images": []
+        }
+      ],
       "images": [],
       "model3d": ""
     }
