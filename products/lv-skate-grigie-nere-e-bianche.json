@@ -1,0 +1,26 @@
+{
+  "id": 6,
+  "name": "LV SKATE GRIGIE, NERE E BIANCHE",
+  "category": "Sneakers",
+  "price": "109,99",
+  "sizes": [
+    "35",
+    "36",
+    "37",
+    "38",
+    "39",
+    "40",
+    "41",
+    "42",
+    "43",
+    "44",
+    "45",
+    "46"
+  ],
+  "available": true,
+  "description": "-colore grigio, bianco e nero\n-qualità 1:1",
+  "images": [
+    "/uploads/pasted-image-1789057533471.png"
+  ],
+  "model3d": ""
+}
