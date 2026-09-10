@@ -5,7 +5,7 @@
       "category": "Sneakers",
       "price": "99,99€",
       "available": true,
-      "description": "|Qualità 1:1|Pagamenti: pay pal, bonifico istantaneo, \ncontanti(prima dell’ordine)|",
+      "description": "|Qualità 1:1|Pagamenti: PayPal, bonifico istantaneo, \ncontanti(prima dell’ordine)|",
       "id": 1,
       "sizes": [
         "35",
@@ -83,6 +83,122 @@
           "color3": "",
           "images": [
             "/uploads/pasted-image-1789067365418.png"
+          ]
+        }
+      ],
+      "images": [],
+      "model3d": ""
+    },
+    {
+      "name": "BALENCIAGA RUNNER",
+      "category": "Sneakers",
+      "price": "110,00€",
+      "available": true,
+      "description": "|Qualità 1:1|Pagamenti: PayPal, bonifico istantaneo, \ncontanti(prima dell’ordine)|",
+      "id": 2,
+      "sizes": [
+        "35",
+        "36",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45",
+        "46"
+      ],
+      "colors": [
+        {
+          "name": "nero e rosso",
+          "color1": "#000000",
+          "color2": "#ff0000",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789068469107.png"
+          ]
+        },
+        {
+          "name": "nero",
+          "color1": "#000000",
+          "color2": "",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789068546024.png"
+          ]
+        },
+        {
+          "name": "rosa",
+          "color1": "#ffc0cb",
+          "color2": "",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789068580815.png"
+          ]
+        },
+        {
+          "name": "grigio",
+          "color1": "#808080",
+          "color2": "",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789068746311.png"
+          ]
+        },
+        {
+          "name": "bianco e rosa",
+          "color1": "#ffffff",
+          "color2": "#ffc0cb",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789068821341.png"
+          ]
+        },
+        {
+          "name": "verde",
+          "color1": "#008000",
+          "color2": "",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789068926095.png"
+          ]
+        },
+        {
+          "name": "multicolor",
+          "color1": "#0000ff",
+          "color2": "#ffff00",
+          "color3": "#ffffff",
+          "images": [
+            "/uploads/pasted-image-1789068952330.png"
+          ]
+        },
+        {
+          "name": "bianco e rosso",
+          "color1": "#ffffff",
+          "color2": "#ff0000",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789069239839.png"
+          ]
+        },
+        {
+          "name": "bianco e bordeaux",
+          "color1": "#ffffff",
+          "color2": "#b22222",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789069445142.png"
+          ]
+        },
+        {
+          "name": "nera e bianca",
+          "color1": "#000000",
+          "color2": "#ffffff",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789069475475.png"
           ]
         }
       ],
