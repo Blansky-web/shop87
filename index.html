@@ -42,7 +42,6 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg-primary);c
 .category-item:hover::before{width:20px}
 .category-item.active{color:var(--gold);font-weight:600;background:rgba(139,0,0,.15)}
 .category-item.active::before{width:20px}
-/* ============ BARRA DI RICERCA ============ */
 .search-wrapper{position:relative;display:flex;align-items:center;max-width:400px;width:100%}
 .search-input{width:100%;padding:12px 44px 12px 16px;background:rgba(20,20,20,.95);color:var(--white);border:1px solid var(--border);font-family:'Inter',sans-serif;font-size:.8rem;letter-spacing:2px;text-transform:uppercase;transition:all var(--t-smooth);outline:none}
 .search-input::placeholder{color:var(--text-muted);letter-spacing:2px;font-size:.7rem;text-transform:uppercase}
@@ -86,6 +85,16 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg-primary);c
 .size-selector::-webkit-scrollbar-track{background:#0a0a0a}
 .size-selector::-webkit-scrollbar-thumb{background:var(--gold-dark);border-radius:3px}
 .size-selector::-webkit-scrollbar-thumb:hover{background:var(--gold)}
+
+/* ============ SELETTORE COLORI ============ */
+.colors-wrapper{display:flex;flex-direction:column;gap:8px;margin-top:4px}
+.colors-label{font-size:.6rem;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase;font-weight:500}
+.colors-label span{color:var(--gold-light);margin-left:6px;letter-spacing:2px}
+.colors-list{display:flex;flex-wrap:wrap;gap:10px;padding:4px 0}
+.color-swatch{width:32px;height:32px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:all var(--t-smooth);position:relative;flex-shrink:0;box-shadow:0 2px 6px rgba(0,0,0,.4),inset 0 0 0 1px rgba(255,255,255,.15)}
+.color-swatch:hover{transform:scale(1.15);border-color:rgba(212,175,55,.5)}
+.color-swatch.active{border-color:var(--gold);transform:scale(1.15);box-shadow:0 0 0 2px rgba(212,175,55,.3),0 0 15px rgba(212,175,55,.6),inset 0 0 0 1px rgba(255,255,255,.2)}
+.color-swatch.active::after{content:'✓';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:.9rem;text-shadow:0 0 4px rgba(0,0,0,.9),0 0 8px rgba(0,0,0,.7)}
 .buy-button{width:100%;padding:14px;background:transparent;color:var(--white);border:1px solid var(--border-hover);cursor:pointer;font-family:'Inter',sans-serif;font-size:.75rem;font-weight:600;letter-spacing:4px;text-transform:uppercase;transition:all var(--t-smooth);position:relative;overflow:hidden;margin-top:8px}
 .buy-button::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,var(--ruby-red),var(--ruby-dark));transition:left var(--t-smooth);z-index:-1}
 .buy-button:hover::before{left:0}
@@ -125,6 +134,8 @@ model-viewer{width:100%;height:100%;background:#0a0a0a}
 .product-price{font-size:1rem;margin-top:2px}
 .size-selector{padding:11px 34px 11px 12px;font-size:.65rem;letter-spacing:2px;background-position:right 12px center;background-size:12px}
 .size-selector option{padding:12px 14px;font-size:.7rem;letter-spacing:1px}
+.color-swatch{width:26px;height:26px}
+.colors-list{gap:8px}
 .buy-button{padding:11px;font-size:.65rem;letter-spacing:2px}
 .gallery-nav{gap:8px;padding:6px 12px}
 .gallery-dot{width:6px;height:6px}
@@ -153,7 +164,7 @@ model-viewer{width:100%;height:100%;background:#0a0a0a}
 </div>
 <div class="search-wrapper">
 <input type="text" class="search-input" id="searchInput" placeholder="Cerca un prodotto..." oninput="handleSearch(this.value)">
-<svg class="search-icon" id="searchIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+<svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
 <button class="search-clear" id="searchClear" onclick="clearSearch()" type="button">✕</button>
 </div>
 </nav>
@@ -173,6 +184,7 @@ const categories=['Tutti','Sneakers','Scarpe da uomo','Scarpe da donna','Ciabatt
 let currentCategory='Tutti';
 let currentImageIndex={};
 let currentSizes={};
+let currentColors={};
 
 async function init(){
 const container=document.getElementById('productsContainer');
@@ -186,18 +198,13 @@ setupScrollEffects();
 async function loadProducts(){
 try{
 const response=await fetch('/products.json?t='+Date.now());
-if(!response.ok){
-console.warn('products.json non trovato');
-return;
-}
+if(!response.ok){console.warn('products.json non trovato');return;}
 const data=await response.json();
 if(data&&Array.isArray(data.prodotti)){
 productsData=data.prodotti;
 console.log('Caricati '+productsData.length+' prodotti');
 }
-}catch(e){
-console.warn('Errore caricamento prodotti',e);
-}
+}catch(e){console.warn('Errore caricamento prodotti',e);}
 }
 
 function setupScrollEffects(){
@@ -215,10 +222,7 @@ categories.forEach(function(category){
 const item=document.createElement('button');
 item.className='category-item'+(category===currentCategory?' active':'');
 item.textContent=category;
-item.onclick=function(){
-filterProducts(category);
-closeCategoryMenu();
-};
+item.onclick=function(){filterProducts(category);closeCategoryMenu();};
 menu.appendChild(item);
 });
 }
@@ -231,17 +235,13 @@ btn.classList.toggle('open');
 }
 
 function closeCategoryMenu(){
-const menu=document.getElementById('categoryMenu');
-const btn=document.getElementById('categoryBtn');
-menu.classList.remove('open');
-btn.classList.remove('open');
+document.getElementById('categoryMenu').classList.remove('open');
+document.getElementById('categoryBtn').classList.remove('open');
 }
 
 document.addEventListener('click',function(event){
 const dropdown=document.querySelector('.category-dropdown');
-if(dropdown&&!dropdown.contains(event.target)){
-closeCategoryMenu();
-}
+if(dropdown&&!dropdown.contains(event.target)){closeCategoryMenu();}
 });
 
 function filterProducts(category){
@@ -277,216 +277,22 @@ return nameMatch||categoryMatch;
 });
 }
 if(filteredProducts.length===0){
-if(searchQuery.length>0){
-container.innerHTML='<p class="empty-message">Nessun prodotto trovato per "'+searchQuery+'"</p>';
-}else{
-container.innerHTML='<p class="empty-message">Nessun prodotto disponibile in questa categoria</p>';
-}
+if(searchQuery.length>0){container.innerHTML='<p class="empty-message">Nessun prodotto trovato per "'+searchQuery+'"</p>';}
+else{container.innerHTML='<p class="empty-message">Nessun prodotto disponibile in questa categoria</p>';}
 return;
 }
-filteredProducts.forEach(function(product){
-const card=createProductCard(product);
-container.appendChild(card);
-});
+filteredProducts.forEach(function(product){container.appendChild(createProductCard(product));});
 }
 
-function createProductCard(product){
-const card=document.createElement('div');
-card.className='product-card'+(product.available?'':' sold-out');
-const imageContainer=document.createElement('div');
-imageContainer.className='image-gallery';
-if(!product.available){
-const soldOutBadge=document.createElement('div');
-soldOutBadge.className='sold-out-badge';
-soldOutBadge.textContent='Sold Out';
-imageContainer.appendChild(soldOutBadge);
-}
-if(product.model3d){
-const modelBtn=document.createElement('button');
-modelBtn.className='model-3d-btn';
-modelBtn.textContent='◉ Vista 3D';
-modelBtn.onclick=function(){toggle3DModel(product.id);};
-imageContainer.appendChild(modelBtn);
-}
-const imageContainerInner=document.createElement('div');
-imageContainerInner.className='product-image-container';
-imageContainerInner.id='image-container-'+product.id;
-const img=document.createElement('img');
-img.className='product-image';
-img.src=(product.images&&product.images[0])?product.images[0]:'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22%3E%3Crect fill=%22%23141414%22 width=%22400%22 height=%22400%22/%3E%3Ctext fill=%22%236B6B6B%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-family=%22sans-serif%22 font-size=%2220%22%3ENessuna immagine%3C/text%3E%3C/svg%3E';
-img.alt=product.name;
-img.id='main-image-'+product.id;
-img.loading='lazy';
-imageContainerInner.appendChild(img);
-if(product.images&&product.images.length>1){
-let touchStartX=0;
-let touchEndX=0;
-imageContainerInner.addEventListener('touchstart',function(e){touchStartX=e.changedTouches[0].screenX;},{passive:true});
-imageContainerInner.addEventListener('touchend',function(e){touchEndX=e.changedTouches[0].screenX;handleSwipe(product.id,touchStartX,touchEndX);},{passive:true});
-}
-imageContainer.appendChild(imageContainerInner);
-if(product.images&&product.images.length>1){
-const galleryNav=document.createElement('div');
-galleryNav.className='gallery-nav';
-product.images.forEach(function(image,index){
-const dot=document.createElement('div');
-dot.className='gallery-dot'+(index===0?' active':'');
-dot.dataset.index=index;
-dot.onclick=function(){changeImage(product.id,index);};
-galleryNav.appendChild(dot);
-});
-imageContainer.appendChild(galleryNav);
-}
-card.appendChild(imageContainer);
-const info=document.createElement('div');
-info.className='product-info';
-const name=document.createElement('h3');
-name.className='product-name';
-name.textContent=product.name;
-info.appendChild(name);
-const category=document.createElement('div');
-category.className='product-category';
-category.textContent=product.category;
-info.appendChild(category);
-const price=document.createElement('div');
-price.className='product-price';
-price.textContent=product.price;
-info.appendChild(price);
-if(product.sizes&&product.sizes.length>0){
-const sizeSelector=document.createElement('select');
-sizeSelector.className='size-selector';
-sizeSelector.id='size-selector-'+product.id;
-product.sizes.forEach(function(size){
-const option=document.createElement('option');
-option.value=size;
-option.textContent='Taglia: '+size;
-sizeSelector.appendChild(option);
-});
-sizeSelector.onchange=function(e){currentSizes[product.id]=e.target.value;};
-currentSizes[product.id]=product.sizes[0];
-info.appendChild(sizeSelector);
-}
-const buyButton=document.createElement('button');
-buyButton.className='buy-button'+(product.available?'':' sold-out-btn');
-if(product.available){
-buyButton.textContent='Acquista Ora';
-buyButton.onclick=function(){buyOnInstagram(product);};
-}else{
-buyButton.textContent='Esaurito';
-buyButton.disabled=true;
-}
-info.appendChild(buyButton);
-card.appendChild(info);
-return card;
-}
-
-function handleSwipe(productId,startX,endX){
-const swipeThreshold=50;
-const diff=startX-endX;
-const product=productsData.find(function(p){return p.id===productId;});
-if(!product||!product.images)return;
-if(currentImageIndex[productId]===undefined){currentImageIndex[productId]=0;}
-if(diff>swipeThreshold){
-let newIndex=currentImageIndex[productId]+1;
-if(newIndex>=product.images.length)newIndex=0;
-changeImage(productId,newIndex);
-}else if(diff<-swipeThreshold){
-let newIndex=currentImageIndex[productId]-1;
-if(newIndex<0)newIndex=product.images.length-1;
-changeImage(productId,newIndex);
-}
-}
-
-function changeImage(productId,index){
-const img=document.getElementById('main-image-'+productId);
-const product=productsData.find(function(p){return p.id===productId;});
-if(!img||!product)return;
-currentImageIndex[productId]=index;
-img.src=product.images[index];
-const card=img.closest('.product-card');
-if(card){
-const dots=card.querySelectorAll('.gallery-dot');
-dots.forEach(function(dot,i){
-if(i===index){dot.classList.add('active');}
-else{dot.classList.remove('active');}
-});
-}
-}
-
-function toggle3DModel(productId){
-const container=document.getElementById('image-container-'+productId);
-const product=productsData.find(function(p){return p.id===productId;});
-if(!product||!product.model3d)return;
-if(container.querySelector('model-viewer')){
-const modelViewer=container.querySelector('model-viewer');
-modelViewer.remove();
-const img=document.createElement('img');
-img.className='product-image';
-img.src=product.images[0];
-img.alt=product.name;
-img.id='main-image-'+productId;
-container.appendChild(img);
-}else{
-container.innerHTML='';
-const modelViewer=document.createElement('model-viewer');
-modelViewer.src=product.model3d;
-modelViewer.alt='Modello 3D di '+product.name;
-modelViewer.setAttribute('auto-rotate','');
-modelViewer.setAttribute('camera-controls','');
-modelViewer.setAttribute('ar','');
-modelViewer.setAttribute('ar-modes','webxr scene-viewer quick-look');
-modelViewer.setAttribute('shadow-intensity','1');
-modelViewer.style.width='100%';
-modelViewer.style.height='100%';
-container.appendChild(modelViewer);
-}
-}
-
-function buyOnInstagram(product){
-const size=currentSizes[product.id]||(product.sizes?product.sizes[0]:'');
-const message='Ciao! Sono interessato all\'articolo: '+product.name+' (Taglia: '+size+'). È ancora disponibile?';
-if(navigator.clipboard&&navigator.clipboard.writeText){
-navigator.clipboard.writeText(message).then(function(){showCopyNotification();}).catch(function(){fallbackCopy(message);});
-}else{
-fallbackCopy(message);
-}
-const instagramUrl='https://ig.me/m/87shopp_';
-window.open(instagramUrl,'_blank');
-}
-
-function fallbackCopy(text){
-const textarea=document.createElement('textarea');
-textarea.value=text;
-textarea.style.position='fixed';
-textarea.style.opacity='0';
-document.body.appendChild(textarea);
-textarea.select();
-try{
-document.execCommand('copy');
-showCopyNotification();
-}catch(err){
-console.log('Copia fallita');
-}
-document.body.removeChild(textarea);
-}
-
-function showCopyNotification(){
-const existing=document.querySelector('.copy-notification');
-if(existing){existing.remove();}
-const notification=document.createElement('div');
-notification.className='copy-notification';
-notification.textContent='✓ Messaggio copiato! Incollalo nella chat di Instagram';
-document.body.appendChild(notification);
-setTimeout(function(){
-notification.style.opacity='0';
-notification.style.transition='opacity .4s';
-setTimeout(function(){
-if(notification.parentNode){notification.parentNode.removeChild(notification);}
-},400);
-},4000);
-}
-
-document.addEventListener('DOMContentLoaded',init);
-</script>
-</body>
-</html>
+// Costruisce lo stile di sfondo per un pallino colore
+function buildSwatchGradient(color){
+const colors=[];
+if(color.color1)colors.push(color.color1);
+if(color.color2)colors.push(color.color2);
+if(color.color3)colors.push(color.color3);
+if(colors.length===1){
+return colors[0];
+}else if(colors.length===2){
+return 'linear-gradient(90deg, '+colors[0]+' 0%, '+colors[0]+' 50%, '+colors[1]+' 50%, '+colors[1]+' 100%)';
+}else if(colors.length===3){
+return 'linear-gradient(135deg, '+colors[0]+' 0%, '+colors[0]+' 33%, '+colors[1]+' 33%, '+colors[1]+'
