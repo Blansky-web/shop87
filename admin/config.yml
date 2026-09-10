@@ -45,7 +45,7 @@ collections:
       - label: "Immagini"
         name: "images"
         widget: "list"
-        required: true
+        required: false
         field:
           label: "Immagine"
           name: "image"
