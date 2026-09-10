@@ -17,7 +17,7 @@ body.modal-open{overflow:hidden}
 .shipping-banner{background:linear-gradient(90deg,var(--ruby-dark),var(--ruby-red),var(--ruby-dark));color:#F4D03F;text-align:center;padding:12px 20px;font-size:.75rem;letter-spacing:3px;text-transform:uppercase;font-weight:700;border-bottom:1px solid var(--border);position:relative;overflow:hidden}
 .shipping-banner::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(244,208,63,.15),transparent);animation:shine 4s infinite}
 @keyframes shine{0%{left:-100%}50%,100%{left:100%}}
-/* ============ HEADER — STATICO, NESSUNA ANIMAZIONE, GRANDEZZA ORIGINALE ============ */
+/* ============ HEADER ============ */
 .header{background:rgba(255,255,255,.9);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);text-align:center;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;overflow:hidden;will-change:transform;transform:translateZ(0);backface-visibility:hidden}
 .header::after{content:'';position:absolute;top:-100px;left:50%;width:600px;height:300px;margin-left:-300px;background:radial-gradient(ellipse at center,rgba(184,134,11,.12) 0%,rgba(184,134,11,.05) 30%,rgba(184,134,11,0) 70%);pointer-events:none;animation:fluidGlow 6s ease-in-out infinite alternate;z-index:0;will-change:opacity;backface-visibility:hidden}
 @keyframes fluidGlow{0%{opacity:.6}100%{opacity:1}}
@@ -97,6 +97,11 @@ body.modal-open{overflow:hidden}
 .modal-close-x{position:absolute;top:16px;right:16px;background:rgba(255,255,255,.95);border:1px solid var(--gold);color:var(--gold-dark);width:40px;height:40px;border-radius:50%;font-size:1.3rem;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:20;transition:all var(--t-fast);font-weight:600;line-height:1}
 .modal-close-x:hover{background:var(--gold);color:#ffffff;transform:rotate(90deg)}
 .modal-content{display:grid;grid-template-columns:1fr 1fr;gap:0}
+/* Drag handle: visibile solo su mobile */
+.modal-drag-handle{display:none}
+.modal.dragging{transition:none !important;will-change:transform}
+.modal.dragging *{pointer-events:none}
+.modal.dragging .modal-close-x{pointer-events:auto}
 .modal-gallery{position:relative;background:#f5f5f5;aspect-ratio:1;overflow:hidden;touch-action:pan-y;user-select:none}
 .modal-gallery-image{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
 .modal-gallery .gallery-nav{bottom:20px}
@@ -174,10 +179,13 @@ model-viewer{width:100%;height:100%;background:#f5f5f5}
 .tap-hint{font-size:.55rem;margin-top:4px}
 .footer{padding:40px 15px 30px;margin-top:50px}
 .footer .logo{font-size:1.8rem;letter-spacing:4px}
+/* Modale mobile: dal basso + drag handle */
 .modal-overlay{padding:0;align-items:flex-end}
 .modal{max-height:95vh;border-radius:20px 20px 0 0;animation:modalSlideFromBottom .4s cubic-bezier(.16,1,.3,1)}
 @keyframes modalSlideFromBottom{from{opacity:0;transform:translateY(100%)}to{opacity:1;transform:translateY(0)}}
-.modal-details{padding:20px}
+.modal-drag-handle{display:block;width:44px;height:5px;background:rgba(0,0,0,.22);border-radius:3px;margin:10px auto 4px auto;position:relative;z-index:25;cursor:grab;cursor:-webkit-grab;flex-shrink:0}
+.modal-drag-handle::before{content:'';position:absolute;top:-20px;left:-30px;right:-30px;bottom:-20px}
+.modal-details{padding:16px 20px 20px}
 .modal-name{font-size:1.4rem}
 .modal-price{font-size:1.4rem}
 .modal-close-x{top:12px;right:12px;width:36px;height:36px;font-size:1.1rem}
@@ -232,6 +240,7 @@ model-viewer{width:100%;height:100%;background:#f5f5f5}
 
 <div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
 <div class="modal" id="modalContent" onclick="event.stopPropagation()">
+<div class="modal-drag-handle" id="modalDragHandle"></div>
 <button class="modal-close-x" onclick="closeModal()" aria-label="Chiudi">✕</button>
 <div class="modal-content">
 <div class="modal-gallery" id="modalGallery"></div>
@@ -256,6 +265,7 @@ container.innerHTML='<p class="loading-message">Caricamento prodotti...</p>';
 await loadProducts();
 renderNavMenu();
 renderProducts();
+setupDragToClose();
 }
 
 async function loadProducts(){
@@ -265,6 +275,98 @@ if(!response.ok){console.warn('products.json non trovato');return;}
 const data=await response.json();
 if(data&&Array.isArray(data.prodotti)){productsData=data.prodotti;}
 }catch(e){console.warn('Errore caricamento prodotti',e);}
+}
+
+/* ============ DRAG TO CLOSE (mobile) ============ */
+function setupDragToClose(){
+const modal=document.getElementById('modalContent');
+const overlay=document.getElementById('modalOverlay');
+if(!modal||!overlay)return;
+
+let startY=0;
+let currentY=0;
+let isDragging=false;
+let canDrag=false;
+const CLOSE_THRESHOLD=100;
+
+modal.addEventListener('touchstart',function(e){
+if(window.innerWidth>768)return;
+if(modal.scrollTop>0){canDrag=false;return;}
+const touch=e.touches[0];
+startY=touch.clientY;
+currentY=startY;
+canDrag=true;
+isDragging=false;
+},{passive:true});
+
+modal.addEventListener('touchmove',function(e){
+if(!canDrag)return;
+const touch=e.touches[0];
+currentY=touch.clientY;
+const diff=currentY-startY;
+
+if(diff<0){
+canDrag=false;
+if(isDragging){resetModalPosition(modal,overlay);}
+return;
+}
+
+if(diff>10){
+if(!isDragging){
+isDragging=true;
+modal.classList.add('dragging');
+}
+e.preventDefault();
+modal.style.transform='translateY('+diff+'px)';
+const opacity=Math.max(0.2,1-(diff/500));
+overlay.style.background='rgba(0,0,0,'+(opacity*0.5)+')';
+}
+},{passive:false});
+
+modal.addEventListener('touchend',function(e){
+if(!isDragging){canDrag=false;return;}
+const diff=currentY-startY;
+if(diff>CLOSE_THRESHOLD){
+modal.style.transition='transform 0.3s cubic-bezier(0.16,1,0.3,1)';
+modal.style.transform='translateY(100%)';
+overlay.style.transition='opacity 0.3s';
+overlay.style.opacity='0';
+setTimeout(function(){
+closeModal();
+modal.style.transition='';
+modal.style.transform='';
+modal.style.removeProperty('transform');
+modal.classList.remove('dragging');
+overlay.style.background='';
+overlay.style.opacity='';
+overlay.style.transition='';
+},250);
+}else{
+resetModalPosition(modal,overlay);
+}
+isDragging=false;
+canDrag=false;
+},{passive:true});
+
+modal.addEventListener('touchcancel',function(e){
+if(isDragging){resetModalPosition(modal,overlay);}
+isDragging=false;
+canDrag=false;
+},{passive:true});
+}
+
+function resetModalPosition(modal,overlay){
+modal.style.transition='transform 0.3s cubic-bezier(0.16,1,0.3,1)';
+modal.style.transform='translateY(0)';
+overlay.style.transition='background 0.3s';
+overlay.style.background='';
+setTimeout(function(){
+modal.style.transition='';
+modal.style.transform='';
+modal.style.removeProperty('transform');
+modal.classList.remove('dragging');
+overlay.style.transition='';
+},300);
 }
 
 function renderNavMenu(){
