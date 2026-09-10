@@ -6,29 +6,12 @@
   <title>Shop87 — Admin</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: #0a0a0a; color: #fff; font-family: Inter, sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 20px; }
-    .card { background: #1a1a1a; border: 2px solid #D4AF37; border-radius: 12px; padding: 40px; max-width: 520px; width: 100%; text-align: center; }
-    .logo { font-family: Cinzel, serif; font-size: 3rem; font-weight: 900; background: linear-gradient(135deg, #F4D03F, #D4AF37, #996515); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px; }
-    h1 { color: #D4AF37; font-size: 1.4rem; margin-bottom: 16px; }
-    p { color: #ccc; line-height: 1.6; margin-bottom: 28px; }
-    button { background: #8B0000; color: #fff; border: 2px solid #D4AF37; border-radius: 6px; padding: 15px 30px; font-size: 1.1rem; font-weight: 600; letter-spacing: 1px; cursor: pointer; }
-    button:hover { background: #5C0000; border-color: #F4D03F; }
+    body { background: #0a0a0a; color: #fff; font-family: Inter, sans-serif; }
+    #cms-root { min-height: 100vh; }
   </style>
 </head>
 <body>
-  <div class="card" id="intro">
-    <div class="logo">Shop87</div>
-    <h1>Pannello di Amministrazione</h1>
-    <p>Accedi con il tuo account GitHub per gestire prodotti, foto e disponibilità.</p>
-    <button onclick="startCMS()">🔐 Accedi con GitHub</button>
-  </div>
-
-  <script type="module">
-    async function startCMS() {
-      document.getElementById('intro').style.display = 'none';
-      await import('https://cdn.jsdelivr.net/npm/@sveltia/cms@latest/dist/sveltia-cms.js');
-    }
-    window.startCMS = startCMS;
-  </script>
-</head>
+  <div id="cms-root"></div>
+  <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
+</body>
 </html>
