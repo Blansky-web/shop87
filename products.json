@@ -1,9 +1,9 @@
 {
   "prodotti": [
     {
-      "name": "LV Skate",
+      "name": ".",
       "category": "Sneakers",
-      "price": "100€",
+      "price": ".",
       "available": true,
       "description": "",
       "id": 1,
@@ -15,62 +15,7 @@
         "43",
         "44"
       ],
-      "colors": [
-        {
-          "name": "Verde",
-          "color1": "#008000",
-          "color2": "",
-          "color3": "",
-          "images": [
-            "/uploads/pasted-image-1789064875146.png"
-          ]
-        },
-        {
-          "name": "Nero",
-          "color1": "#000000",
-          "color2": "",
-          "color3": "",
-          "images": [
-            "/uploads/pasted-image-1789064904690.png"
-          ]
-        },
-        {
-          "name": "Bianco",
-          "color1": "#FFFFFF",
-          "color2": "",
-          "color3": "",
-          "images": [
-            "/uploads/pasted-image-1789064933441.png"
-          ]
-        },
-        {
-          "name": "Viola",
-          "color1": "#6A0DAD",
-          "color2": "",
-          "color3": "",
-          "images": [
-            "/uploads/pasted-image-1789064994881.png"
-          ]
-        },
-        {
-          "name": "Multicolor",
-          "color1": "#808080",
-          "color2": "#FFFFFF",
-          "color3": "",
-          "images": [
-            "/uploads/pasted-image-1789065059611.png"
-          ]
-        },
-        {
-          "name": "Arancione",
-          "color1": "#FFA500",
-          "color2": "#FFFFFF",
-          "color3": "",
-          "images": [
-            "/uploads/pasted-image-1789065111151.png"
-          ]
-        }
-      ],
+      "colors": [],
       "images": [],
       "model3d": ""
     }
