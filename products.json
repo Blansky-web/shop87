@@ -1,19 +1,19 @@
 {
   "prodotti": [
     {
-      "name": "LV SKATE",
+      "name": "LV Skate",
       "category": "Sneakers",
-      "price": "99,99€",
+      "price": "99.99€",
       "available": true,
-      "description": "|Qualità 1:1|Pagamenti: PayPal, bonifico istantaneo, \ncontanti(prima dell’ordine)|",
+      "description": "",
       "id": 1,
       "sizes": [
-        "35",
-        "37",
-        "38",
-        "36",
         "39",
         "40",
+        "41",
+        "42",
+        "43",
+        "44",
         "41",
         "42",
         "43",
