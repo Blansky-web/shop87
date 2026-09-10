@@ -17,15 +17,20 @@ body.modal-open{overflow:hidden}
 .shipping-banner{background:linear-gradient(90deg,var(--ruby-dark),var(--ruby-red),var(--ruby-dark));color:var(--gold-light);text-align:center;padding:12px 20px;font-size:.75rem;letter-spacing:3px;text-transform:uppercase;font-weight:500;border-bottom:1px solid var(--border);position:relative;overflow:hidden}
 .shipping-banner::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(244,208,63,.15),transparent);animation:shine 4s infinite}
 @keyframes shine{0%{left:-100%}50%,100%{left:100%}}
-.header{background:rgba(10,10,10,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:30px 20px;text-align:center;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;transition:padding var(--t-smooth)}
+/* HEADER con bagliore fluido */
+.header{background:rgba(10,10,10,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:30px 20px;text-align:center;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;transition:padding var(--t-smooth);position:relative;overflow:hidden}
+.header::after{content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse at center,rgba(212,175,55,.18) 0%,rgba(212,175,55,.08) 30%,rgba(212,175,55,0) 70%);pointer-events:none;filter:blur(20px);animation:fluidGlow 6s ease-in-out infinite alternate;z-index:0}
+@keyframes fluidGlow{0%{opacity:.6;transform:translateX(-50%) scale(1)}100%{opacity:1;transform:translateX(-50%) scale(1.15)}}
 .header.scrolled{padding:15px 20px}
-.logo{font-family:'Cormorant Garamond',serif;font-size:3.5rem;font-weight:500;background:linear-gradient(135deg,var(--gold-light) 0%,var(--gold) 40%,var(--gold-dark) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:8px;margin-bottom:8px;line-height:1;position:relative;display:inline-block;animation:fadeInDown .8s cubic-bezier(.16,1,.3,1);transition:font-size var(--t-smooth)}
+.logo{font-family:'Cormorant Garamond',serif;font-size:3.5rem;font-weight:500;background:linear-gradient(135deg,var(--gold-light) 0%,var(--gold) 40%,var(--gold-dark) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:8px;margin-bottom:8px;line-height:1;position:relative;display:inline-block;animation:fadeInDown .8s cubic-bezier(.16,1,.3,1);transition:font-size var(--t-smooth);z-index:1}
+.logo::after{content:'';position:absolute;inset:-30px;background:radial-gradient(ellipse at center,rgba(244,208,63,.25) 0%,rgba(212,175,55,.1) 40%,transparent 75%);z-index:-1;filter:blur(25px);animation:logoGlow 4s ease-in-out infinite alternate;pointer-events:none}
+@keyframes logoGlow{0%{opacity:.5}100%{opacity:1}}
 .header.scrolled .logo{font-size:2.5rem}
 @keyframes fadeInDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
-.header-instruction{display:flex;align-items:center;justify-content:center;gap:10px;max-width:600px;margin:0 auto 14px;padding:0 20px;color:var(--text-secondary);font-size:.72rem;letter-spacing:1.5px;line-height:1.5;font-weight:400;text-align:center;animation:fadeInDown 1s cubic-bezier(.16,1,.3,1)}
+.header-instruction{display:flex;align-items:center;justify-content:center;gap:10px;max-width:600px;margin:0 auto 14px;padding:0 20px;color:var(--text-secondary);font-size:.72rem;letter-spacing:1.5px;line-height:1.5;font-weight:400;text-align:center;animation:fadeInDown 1s cubic-bezier(.16,1,.3,1);position:relative;z-index:1}
 .header-instruction-icon{width:16px;height:16px;color:var(--gold);flex-shrink:0;opacity:.9}
 .header-instruction strong{color:var(--gold-light);font-weight:600;letter-spacing:1.5px;text-transform:uppercase;font-size:.68rem}
-.instagram-link{color:var(--text-secondary);text-decoration:none;font-size:.75rem;letter-spacing:3px;text-transform:uppercase;transition:color var(--t-fast);position:relative;padding-bottom:3px}
+.instagram-link{color:var(--text-secondary);text-decoration:none;font-size:.75rem;letter-spacing:3px;text-transform:uppercase;transition:color var(--t-fast);position:relative;padding-bottom:3px;z-index:1}
 .instagram-link::after{content:'';position:absolute;bottom:0;left:50%;width:0;height:1px;background:var(--gold);transition:all var(--t-smooth);transform:translateX(-50%)}
 .instagram-link:hover{color:var(--gold)}
 .instagram-link:hover::after{width:100%}
@@ -60,7 +65,7 @@ body.modal-open{overflow:hidden}
 @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
 .product-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);transform:scaleX(0);transition:transform var(--t-smooth);z-index:5}
 .product-card:hover::before{transform:scaleX(1)}
-.product-card:hover{transform:translateY(-8px);border-color:var(--border-hover);box-shadow:var(--shadow-lg),var(--shadow-glow)}
+.product-card:hover{transform:translateY(-8px);border-color:var(--border-hover);box-shadow:0 20px 60px rgba(0,0,0,.6),0 0 40px rgba(212,175,55,.25)}
 .product-card.sold-out{opacity:.5;cursor:not-allowed;pointer-events:none}
 .product-card.sold-out:hover{transform:none}
 .product-image-container{position:relative;width:100%;aspect-ratio:1;overflow:hidden;background:#0a0a0a;touch-action:pan-y;user-select:none}
@@ -81,6 +86,7 @@ body.modal-open{overflow:hidden}
 .product-price{font-size:1.2rem;color:var(--gold);font-weight:600;letter-spacing:1px;margin-top:2px}
 .tap-hint{font-size:.6rem;color:var(--gold);letter-spacing:2px;text-transform:uppercase;font-weight:500;margin-top:6px;opacity:.7;transition:opacity var(--t-fast)}
 .product-card:hover .tap-hint{opacity:1}
+/* MODALE */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);z-index:1000;display:none;align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity var(--t-smooth)}
 .modal-overlay.open{display:flex;opacity:1}
 .modal{background:var(--bg-secondary);border:1px solid var(--border-hover);max-width:1000px;width:100%;max-height:90vh;overflow-y:auto;position:relative;animation:modalSlideUp .4s cubic-bezier(.16,1,.3,1);box-shadow:0 40px 100px rgba(0,0,0,.8),0 0 60px rgba(212,175,55,.2)}
@@ -108,14 +114,18 @@ body.modal-open{overflow:hidden}
 .size-button{min-width:52px;padding:12px 16px;background:transparent;color:var(--white);border:1px solid var(--border);font-family:'Inter',sans-serif;font-size:.8rem;font-weight:500;letter-spacing:1px;cursor:pointer;transition:all var(--t-fast);text-align:center}
 .size-button:hover{border-color:var(--gold);color:var(--gold-light)}
 .size-button.selected{background:var(--gold);color:var(--bg-primary);border-color:var(--gold);font-weight:700}
+/* ============ PALLINI COLORE SISTEMATI ============ */
 .colors-list-modal{display:flex;flex-wrap:nowrap;gap:10px;padding:4px 2px 8px 2px;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:var(--gold-dark) transparent;scroll-behavior:smooth}
 .colors-list-modal::-webkit-scrollbar{height:4px}
 .colors-list-modal::-webkit-scrollbar-track{background:rgba(212,175,55,.08);border-radius:2px}
 .colors-list-modal::-webkit-scrollbar-thumb{background:var(--gold-dark);border-radius:2px}
-.color-swatch{width:36px;height:36px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:all var(--t-smooth);position:relative;flex-shrink:0;box-shadow:0 2px 6px rgba(0,0,0,.4),inset 0 0 0 1px rgba(255,255,255,.15)}
+.color-swatch{width:36px;height:36px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:all var(--t-smooth);position:relative;flex-shrink:0;background-clip:padding-box;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,.4)}
+.color-swatch::after{content:'';position:absolute;inset:0;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);pointer-events:none;z-index:2}
 .color-swatch:hover{transform:scale(1.15);border-color:rgba(212,175,55,.5)}
-.color-swatch.active{border-color:var(--gold);transform:scale(1.15);box-shadow:0 0 0 2px rgba(212,175,55,.3),0 0 15px rgba(212,175,55,.6),inset 0 0 0 1px rgba(255,255,255,.2)}
-.color-swatch.active::after{content:'✓';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1rem;text-shadow:0 0 4px rgba(0,0,0,.9),0 0 8px rgba(0,0,0,.7)}
+.color-swatch.active{border-color:var(--gold);transform:scale(1.15);box-shadow:0 0 0 2px rgba(212,175,55,.3),0 0 20px rgba(212,175,55,.6)}
+.swatch-check{display:none;position:absolute;inset:0;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1rem;text-shadow:0 0 4px rgba(0,0,0,.9),0 0 8px rgba(0,0,0,.7);z-index:3;pointer-events:none}
+.color-swatch.active .swatch-check{display:flex}
+/* ============ FINE PALLINI ============ */
 .modal-help-message{display:none;font-size:.75rem;color:var(--gold);letter-spacing:2px;text-transform:uppercase;font-weight:600;text-align:center;padding:12px;background:rgba(212,175,55,.08);border:1px solid rgba(212,175,55,.25);margin-top:8px;transition:all var(--t-smooth)}
 .modal-help-message.visible{display:block;animation:pulseHelp 2s ease-in-out infinite}
 .modal-help-message.success{background:rgba(212,175,55,.15);border-color:var(--gold);color:var(--gold-light);animation:none}
@@ -145,6 +155,7 @@ model-viewer{width:100%;height:100%;background:#0a0a0a}
 @media(max-width:768px){
 .header{padding:20px 15px}
 .header.scrolled{padding:12px 15px}
+.header::after{width:400px;height:200px;top:-80px}
 .logo{font-size:2.2rem;letter-spacing:5px}
 .header.scrolled .logo{font-size:1.8rem}
 .header-instruction{font-size:.6rem;letter-spacing:1px;gap:8px;padding:0 10px;margin-bottom:10px;line-height:1.4}
@@ -175,7 +186,7 @@ model-viewer{width:100%;height:100%;background:#0a0a0a}
 .modal-price{font-size:1.4rem}
 .modal-close-x{top:12px;right:12px;width:36px;height:36px;font-size:1.1rem}
 .size-button{min-width:46px;padding:10px 12px;font-size:.75rem}
-.color-swatch{width:30px;height:30px}
+.color-swatch{width:30px;height:30px;background-clip:padding-box;overflow:hidden}
 .modal-buy-button{padding:16px;font-size:.8rem;letter-spacing:3px}
 .modal-close-btn{padding:11px;font-size:.7rem;letter-spacing:2px}
 .modal-help-message{font-size:.65rem;padding:10px;letter-spacing:1px}
@@ -565,6 +576,10 @@ swatch.className='color-swatch'+(index===modalSelectedColor?' active':'');
 swatch.style.background=buildSwatchGradient(color);
 swatch.title=color.name;
 swatch.onclick=function(){selectModalColor(index);};
+const check=document.createElement('div');
+check.className='swatch-check';
+check.textContent='✓';
+swatch.appendChild(check);
 colorsList.appendChild(swatch);
 });
 colorSection.appendChild(colorsList);
