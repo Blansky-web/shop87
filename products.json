@@ -453,6 +453,104 @@
       ],
       "images": [],
       "model3d": ""
+    },
+    {
+      "name": "ALEXANDER MCQUEEN",
+      "category": "Sneakers",
+      "price": "69.99€",
+      "available": true,
+      "description": "|Qualità 1:1|Pagamenti: PayPal, bonifico istantaneo, \ncontanti(prima dell’ordine)|",
+      "id": 6,
+      "sizes": [
+        "35",
+        "36",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45",
+        "46"
+      ],
+      "colors": [
+        {
+          "name": "bianco e azzurro",
+          "color1": "#ffffff",
+          "color2": "#f0f8ff",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789072617002.png"
+          ]
+        },
+        {
+          "name": "bianco e nero",
+          "color1": "#ffffff",
+          "color2": "#000000",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789072765504.png"
+          ]
+        },
+        {
+          "name": "bianco",
+          "color1": "#ffffff",
+          "color2": "",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789072753086.png"
+          ]
+        },
+        {
+          "name": "bianco e grigio",
+          "color1": "#ffffff",
+          "color2": "#808080",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789072741623.png"
+          ]
+        },
+        {
+          "name": "bianco e marrone",
+          "color1": "#ffffff",
+          "color2": "#800000",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789072727037.png"
+          ]
+        },
+        {
+          "name": "bianche e blu",
+          "color1": "#ffffff",
+          "color2": "#0000ff",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789072711290.png"
+          ]
+        },
+        {
+          "name": "multicolor",
+          "color1": "#ffffff",
+          "color2": "#ff00ff",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789072699780.png"
+          ]
+        },
+        {
+          "name": "nere",
+          "color1": "#000000",
+          "color2": "",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789072688984.png"
+          ]
+        }
+      ],
+      "images": [],
+      "model3d": ""
     }
   ]
 }
