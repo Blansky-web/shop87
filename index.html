@@ -85,12 +85,15 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg-primary);c
 .size-selector::-webkit-scrollbar-track{background:#0a0a0a}
 .size-selector::-webkit-scrollbar-thumb{background:var(--gold-dark);border-radius:3px}
 .size-selector::-webkit-scrollbar-thumb:hover{background:var(--gold)}
-
-/* ============ SELETTORE COLORI ============ */
+/* ============ SELETTORE COLORI CON SCROLL ORIZZONTALE ============ */
 .colors-wrapper{display:flex;flex-direction:column;gap:8px;margin-top:4px}
 .colors-label{font-size:.6rem;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase;font-weight:500}
 .colors-label span{color:var(--gold-light);margin-left:6px;letter-spacing:2px}
-.colors-list{display:flex;flex-wrap:wrap;gap:10px;padding:4px 0}
+.colors-list{display:flex;flex-wrap:nowrap;gap:10px;padding:4px 2px 8px 2px;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:var(--gold-dark) transparent;scroll-behavior:smooth}
+.colors-list::-webkit-scrollbar{height:4px}
+.colors-list::-webkit-scrollbar-track{background:rgba(212,175,55,.08);border-radius:2px}
+.colors-list::-webkit-scrollbar-thumb{background:var(--gold-dark);border-radius:2px}
+.colors-list::-webkit-scrollbar-thumb:hover{background:var(--gold)}
 .color-swatch{width:32px;height:32px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:all var(--t-smooth);position:relative;flex-shrink:0;box-shadow:0 2px 6px rgba(0,0,0,.4),inset 0 0 0 1px rgba(255,255,255,.15)}
 .color-swatch:hover{transform:scale(1.15);border-color:rgba(212,175,55,.5)}
 .color-swatch.active{border-color:var(--gold);transform:scale(1.15);box-shadow:0 0 0 2px rgba(212,175,55,.3),0 0 15px rgba(212,175,55,.6),inset 0 0 0 1px rgba(255,255,255,.2)}
@@ -135,7 +138,8 @@ model-viewer{width:100%;height:100%;background:#0a0a0a}
 .size-selector{padding:11px 34px 11px 12px;font-size:.65rem;letter-spacing:2px;background-position:right 12px center;background-size:12px}
 .size-selector option{padding:12px 14px;font-size:.7rem;letter-spacing:1px}
 .color-swatch{width:26px;height:26px}
-.colors-list{gap:8px}
+.colors-list{gap:8px;padding:4px 2px 6px 2px}
+.colors-list::-webkit-scrollbar{height:3px}
 .buy-button{padding:11px;font-size:.65rem;letter-spacing:2px}
 .gallery-nav{gap:8px;padding:6px 12px}
 .gallery-dot{width:6px;height:6px}
@@ -284,19 +288,14 @@ return;
 filteredProducts.forEach(function(product){container.appendChild(createProductCard(product));});
 }
 
-// Costruisce lo stile di sfondo per un pallino colore
 function buildSwatchGradient(color){
 const colors=[];
 if(color.color1)colors.push(color.color1);
 if(color.color2)colors.push(color.color2);
 if(color.color3)colors.push(color.color3);
-if(colors.length===1){
-return colors[0];
-}else if(colors.length===2){
-return 'linear-gradient(90deg, '+colors[0]+' 0%, '+colors[0]+' 50%, '+colors[1]+' 50%, '+colors[1]+' 100%)';
-}else if(colors.length===3){
-return 'linear-gradient(135deg, '+colors[0]+' 0%, '+colors[0]+' 33%, '+colors[1]+' 33%, '+colors[1]+' 66%, '+colors[2]+' 66%, '+colors[2]+' 100%)';
-}
+if(colors.length===1){return colors[0];}
+else if(colors.length===2){return 'linear-gradient(90deg, '+colors[0]+' 0%, '+colors[0]+' 50%, '+colors[1]+' 50%, '+colors[1]+' 100%)';}
+else if(colors.length===3){return 'linear-gradient(135deg, '+colors[0]+' 0%, '+colors[0]+' 33%, '+colors[1]+' 33%, '+colors[1]+' 66%, '+colors[2]+' 66%, '+colors[2]+' 100%)';}
 return '#333';
 }
 
@@ -321,7 +320,6 @@ imageContainer.appendChild(modelBtn);
 const imageContainerInner=document.createElement('div');
 imageContainerInner.className='product-image-container';
 imageContainerInner.id='image-container-'+product.id;
-// Scegli immagini iniziali: default o del primo colore
 let initialImages=product.images||[];
 if(product.colors&&product.colors.length>0&&product.colors[0].images&&product.colors[0].images.length>0){
 initialImages=product.colors[0].images;
@@ -346,7 +344,6 @@ imageContainer.appendChild(imageContainerInner);
 if(initialImages.length>1){
 const galleryNav=document.createElement('div');
 galleryNav.className='gallery-nav';
-galleryNav.id='gallery-nav-'+product.id;
 initialImages.forEach(function(image,index){
 const dot=document.createElement('div');
 dot.className='gallery-dot'+(index===0?' active':'');
@@ -370,7 +367,6 @@ const price=document.createElement('div');
 price.className='product-price';
 price.textContent=product.price;
 info.appendChild(price);
-// Selettore taglia
 if(product.sizes&&product.sizes.length>0){
 const sizeSelector=document.createElement('select');
 sizeSelector.className='size-selector';
@@ -382,210 +378,4 @@ option.textContent='Taglia: '+size;
 sizeSelector.appendChild(option);
 });
 sizeSelector.onchange=function(e){currentSizes[product.id]=e.target.value;};
-currentSizes[product.id]=product.sizes[0];
-info.appendChild(sizeSelector);
-}
-// Selettore colori
-if(product.colors&&product.colors.length>0){
-const colorsWrapper=document.createElement('div');
-colorsWrapper.className='colors-wrapper';
-const colorsLabel=document.createElement('div');
-colorsLabel.className='colors-label';
-colorsLabel.id='colors-label-'+product.id;
-colorsLabel.innerHTML='Colore: <span>'+product.colors[0].name+'</span>';
-colorsWrapper.appendChild(colorsLabel);
-const colorsList=document.createElement('div');
-colorsList.className='colors-list';
-product.colors.forEach(function(color,index){
-const swatch=document.createElement('div');
-swatch.className='color-swatch'+(index===0?' active':'');
-swatch.style.background=buildSwatchGradient(color);
-swatch.title=color.name;
-swatch.onclick=function(){selectColor(product.id,index);};
-colorsList.appendChild(swatch);
-});
-colorsWrapper.appendChild(colorsList);
-info.appendChild(colorsWrapper);
-currentColors[product.id]=0;
-}
-const buyButton=document.createElement('button');
-buyButton.className='buy-button'+(product.available?'':' sold-out-btn');
-if(product.available){
-buyButton.textContent='Acquista Ora';
-buyButton.onclick=function(){buyOnInstagram(product);};
-}else{
-buyButton.textContent='Esaurito';
-buyButton.disabled=true;
-}
-info.appendChild(buyButton);
-card.appendChild(info);
-return card;
-}
-
-function selectColor(productId,colorIndex){
-const product=productsData.find(function(p){return p.id===productId;});
-if(!product||!product.colors||!product.colors[colorIndex])return;
-currentColors[productId]=colorIndex;
-const card=document.querySelector('#image-container-'+productId).closest('.product-card');
-// Aggiorna pallini attivi
-card.querySelectorAll('.color-swatch').forEach(function(sw,i){
-if(i===colorIndex){sw.classList.add('active');}
-else{sw.classList.remove('active');}
-});
-// Aggiorna label
-const label=document.getElementById('colors-label-'+productId);
-if(label){label.innerHTML='Colore: <span>'+product.colors[colorIndex].name+'</span>';}
-// Cambia immagini se il colore ha immagini proprie
-const colorImages=product.colors[colorIndex].images;
-if(colorImages&&colorImages.length>0){
-updateGalleryImages(productId,colorImages);
-}else if(product.images&&product.images.length>0){
-updateGalleryImages(productId,product.images);
-}
-}
-
-function updateGalleryImages(productId,images){
-const img=document.getElementById('main-image-'+productId);
-if(!img)return;
-currentImageIndex[productId]=0;
-img.src=images[0];
-// Ricostruisci pallini galleria
-const card=img.closest('.product-card');
-const oldNav=card.querySelector('.gallery-nav');
-if(oldNav)oldNav.remove();
-if(images.length>1){
-const imageContainer=card.querySelector('.image-gallery');
-const galleryNav=document.createElement('div');
-galleryNav.className='gallery-nav';
-images.forEach(function(image,index){
-const dot=document.createElement('div');
-dot.className='gallery-dot'+(index===0?' active':'');
-dot.onclick=function(){changeImage(productId,index);};
-galleryNav.appendChild(dot);
-});
-imageContainer.appendChild(galleryNav);
-}
-}
-
-function handleSwipe(productId,startX,endX){
-const swipeThreshold=50;
-const diff=startX-endX;
-const product=productsData.find(function(p){return p.id===productId;});
-if(!product)return;
-let images=product.images||[];
-if(currentColors[productId]!==undefined&&product.colors&&product.colors[currentColors[productId]]&&product.colors[currentColors[productId]].images&&product.colors[currentColors[productId]].images.length>0){
-images=product.colors[currentColors[productId]].images;
-}
-if(images.length===0)return;
-if(currentImageIndex[productId]===undefined){currentImageIndex[productId]=0;}
-if(diff>swipeThreshold){
-let newIndex=currentImageIndex[productId]+1;
-if(newIndex>=images.length)newIndex=0;
-changeImage(productId,newIndex);
-}else if(diff<-swipeThreshold){
-let newIndex=currentImageIndex[productId]-1;
-if(newIndex<0)newIndex=images.length-1;
-changeImage(productId,newIndex);
-}
-}
-
-function changeImage(productId,index){
-const img=document.getElementById('main-image-'+productId);
-const product=productsData.find(function(p){return p.id===productId;});
-if(!img||!product)return;
-let images=product.images||[];
-if(currentColors[productId]!==undefined&&product.colors&&product.colors[currentColors[productId]]&&product.colors[currentColors[productId]].images&&product.colors[currentColors[productId]].images.length>0){
-images=product.colors[currentColors[productId]].images;
-}
-if(!images[index])return;
-currentImageIndex[productId]=index;
-img.src=images[index];
-const card=img.closest('.product-card');
-if(card){
-const dots=card.querySelectorAll('.gallery-dot');
-dots.forEach(function(dot,i){
-if(i===index){dot.classList.add('active');}
-else{dot.classList.remove('active');}
-});
-}
-}
-
-function toggle3DModel(productId){
-const container=document.getElementById('image-container-'+productId);
-const product=productsData.find(function(p){return p.id===productId;});
-if(!product||!product.model3d)return;
-if(container.querySelector('model-viewer')){
-const modelViewer=container.querySelector('model-viewer');
-modelViewer.remove();
-const img=document.createElement('img');
-img.className='product-image';
-img.src=product.images[0];
-img.alt=product.name;
-img.id='main-image-'+productId;
-container.appendChild(img);
-}else{
-container.innerHTML='';
-const modelViewer=document.createElement('model-viewer');
-modelViewer.src=product.model3d;
-modelViewer.alt='Modello 3D di '+product.name;
-modelViewer.setAttribute('auto-rotate','');
-modelViewer.setAttribute('camera-controls','');
-modelViewer.setAttribute('ar','');
-modelViewer.setAttribute('ar-modes','webxr scene-viewer quick-look');
-modelViewer.setAttribute('shadow-intensity','1');
-modelViewer.style.width='100%';
-modelViewer.style.height='100%';
-container.appendChild(modelViewer);
-}
-}
-
-function buyOnInstagram(product){
-const size=currentSizes[product.id]||(product.sizes?product.sizes[0]:'');
-let colorName='';
-if(product.colors&&product.colors.length>0){
-const colorIdx=currentColors[product.id]!==undefined?currentColors[product.id]:0;
-colorName=product.colors[colorIdx].name;
-}
-let message='Ciao! Sono interessato all\'articolo: '+product.name;
-if(colorName){message+=' (Colore: '+colorName+', Taglia: '+size+')';}
-else{message+=' (Taglia: '+size+')';}
-message+='. È ancora disponibile?';
-if(navigator.clipboard&&navigator.clipboard.writeText){
-navigator.clipboard.writeText(message).then(function(){showCopyNotification();}).catch(function(){fallbackCopy(message);});
-}else{
-fallbackCopy(message);
-}
-window.open('https://ig.me/m/87shopp_','_blank');
-}
-
-function fallbackCopy(text){
-const textarea=document.createElement('textarea');
-textarea.value=text;
-textarea.style.position='fixed';
-textarea.style.opacity='0';
-document.body.appendChild(textarea);
-textarea.select();
-try{document.execCommand('copy');showCopyNotification();}catch(err){console.log('Copia fallita');}
-document.body.removeChild(textarea);
-}
-
-function showCopyNotification(){
-const existing=document.querySelector('.copy-notification');
-if(existing){existing.remove();}
-const notification=document.createElement('div');
-notification.className='copy-notification';
-notification.textContent='✓ Messaggio copiato! Incollalo nella chat di Instagram';
-document.body.appendChild(notification);
-setTimeout(function(){
-notification.style.opacity='0';
-notification.style.transition='opacity .4s';
-setTimeout(function(){
-if(notification.parentNode){notification.parentNode.removeChild(notification);}
-},400);
-},4000);
-}
-
-document.addEventListener('DOMContentLoaded',init);
-</script>
-</body>
-</html>
+current
