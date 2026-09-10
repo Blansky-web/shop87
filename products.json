@@ -1,14 +1,14 @@
 {
   "prodotti": [
     {
-      "name": "fidate fra",
+      "name": "LV Skate",
       "category": "Sneakers",
-      "price": "111111",
+      "price": "100€",
       "available": true,
       "description": "",
       "id": 1,
       "sizes": [
-        "1",
+        "39",
         "40",
         "41",
         "42",
@@ -17,53 +17,58 @@
       ],
       "colors": [
         {
-          "name": "Multicolor",
-          "color1": "#000000",
-          "color2": "#FFFFFF",
-          "color3": "#008000",
-          "images": []
-        },
-        {
           "name": "Verde",
           "color1": "#008000",
           "color2": "",
           "color3": "",
-          "images": []
+          "images": [
+            "/uploads/pasted-image-1789064875146.png"
+          ]
         },
         {
           "name": "Nero",
           "color1": "#000000",
           "color2": "",
           "color3": "",
-          "images": []
+          "images": [
+            "/uploads/pasted-image-1789064904690.png"
+          ]
         },
         {
           "name": "Bianco",
           "color1": "#FFFFFF",
           "color2": "",
           "color3": "",
-          "images": []
+          "images": [
+            "/uploads/pasted-image-1789064933441.png"
+          ]
         },
         {
           "name": "Viola",
           "color1": "#6A0DAD",
           "color2": "",
           "color3": "",
-          "images": []
+          "images": [
+            "/uploads/pasted-image-1789064994881.png"
+          ]
         },
         {
-          "name": "Grigio",
+          "name": "Multicolor",
           "color1": "#808080",
-          "color2": "",
+          "color2": "#FFFFFF",
           "color3": "",
-          "images": []
+          "images": [
+            "/uploads/pasted-image-1789065059611.png"
+          ]
         },
         {
           "name": "Arancione",
           "color1": "#FFA500",
-          "color2": "",
+          "color2": "#FFFFFF",
           "color3": "",
-          "images": []
+          "images": [
+            "/uploads/pasted-image-1789065111151.png"
+          ]
         }
       ],
       "images": [],
