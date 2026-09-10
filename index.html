@@ -82,41 +82,118 @@
             color: var(--gold-light);
         }
 
-        /* Menu di navigazione */
+        /* Menu di navigazione con tendina */
         .nav-menu {
             background: var(--bg-secondary);
-            padding: 15px;
-            text-align: center;
+            padding: 15px 20px;
             border-bottom: 1px solid var(--gold-dark);
             position: sticky;
             top: 0;
             z-index: 100;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
         }
 
-        .nav-btn {
-            background: transparent;
-            color: var(--text-secondary);
-            border: 1px solid var(--gold-dark);
-            padding: 8px 15px;
-            margin: 5px;
-            cursor: pointer;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.9rem;
-            border-radius: 3px;
-            transition: all 0.3s;
-            letter-spacing: 0.5px;
+        .category-dropdown {
+            position: relative;
+            display: inline-block;
         }
 
-        .nav-btn:hover {
-            background: var(--ruby-red);
-            color: var(--white);
-            border-color: var(--gold);
-        }
-
-        .nav-btn.active {
+        .category-btn {
             background: var(--ruby-red);
             color: var(--gold-light);
-            border-color: var(--gold);
+            border: 2px solid var(--gold);
+            padding: 10px 20px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            border-radius: 4px;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .category-btn:hover {
+            background: var(--ruby-dark);
+            border-color: var(--gold-light);
+        }
+
+        .category-btn::after {
+            content: '▼';
+            font-size: 0.7rem;
+        }
+
+        .category-btn.open::after {
+            content: '▲';
+        }
+
+        .category-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            margin-top: 5px;
+            background: var(--bg-secondary);
+            border: 2px solid var(--gold);
+            border-radius: 4px;
+            min-width: 220px;
+            max-height: 350px;
+            overflow-y: auto;
+            z-index: 200;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+        }
+
+        .category-menu.open {
+            display: block;
+        }
+
+        .category-menu::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .category-menu::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+
+        .category-menu::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 4px;
+        }
+
+        .category-item {
+            display: block;
+            width: 100%;
+            padding: 12px 20px;
+            background: transparent;
+            color: var(--white);
+            border: none;
+            text-align: left;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
+            transition: all 0.2s;
+            border-bottom: 1px solid var(--gold-dark);
+        }
+
+        .category-item:last-child {
+            border-bottom: none;
+        }
+
+        .category-item:hover {
+            background: var(--ruby-red);
+            color: var(--gold-light);
+            padding-left: 28px;
+        }
+
+        .category-item.active {
+            background: var(--ruby-red);
+            color: var(--gold-light);
+            font-weight: 600;
         }
 
         /* Container prodotti */
@@ -324,12 +401,6 @@
                 font-size: 2.5rem;
             }
             
-            .nav-btn {
-                font-size: 0.8rem;
-                padding: 6px 10px;
-                margin: 3px;
-            }
-            
             .products-container {
                 grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
                 gap: 15px;
@@ -350,9 +421,16 @@
         <a href="https://instagram.com/87shopp_" class="instagram-link" target="_blank">@87shopp_</a>
     </header>
 
-    <!-- Menu Navigazione -->
+    <!-- Menu Navigazione con tendina -->
     <nav class="nav-menu" id="navMenu">
-        <!-- I bottoni verranno generati dinamicamente da JavaScript -->
+        <div class="category-dropdown">
+            <button class="category-btn" id="categoryBtn" onclick="toggleCategoryMenu()">
+                Categorie
+            </button>
+            <div class="category-menu" id="categoryMenu">
+                <!-- Le voci verranno generate dinamicamente da JavaScript -->
+            </div>
+        </div>
     </nav>
 
     <!-- Container Prodotti -->
@@ -371,7 +449,7 @@
     </footer>
 
     <script>
-        // Dati prodotti di prova
+        // Dati prodotti di ANTEPRIMA (solo per test)
         const productsData = [
             {
                 id: 1,
@@ -382,86 +460,16 @@
                 available: true,
                 images: [
                     "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=800",
-                    "https://images.unsplash.com/photo-1600269452121-4f2416e55c28?w=800",
-                    "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=800"
+                    "https://images.unsplash.com/photo-1600269452121-4f2416e55c28?w=800"
                 ],
                 model3d: null,
-                description: "Iconiche sneakers in pelle premium"
-            },
-            {
-                id: 2,
-                name: "Nike Dunk Low Panda",
-                category: "Sneakers",
-                price: "€150.00",
-                sizes: ["38", "39", "40", "41", "42"],
-                available: true,
-                images: [
-                    "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=800",
-                    "https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?w=800"
-                ],
-                model3d: "https://modelviewer.dev/shared-assets/models/Astronaut.glb",
-                description: "Dunk Low in bianco e nero"
-            },
-            {
-                id: 3,
-                name: "Gucci Ace Sneakers",
-                category: "Sneakers",
-                price: "€450.00",
-                sizes: ["40", "41", "42", "43", "44", "45"],
-                available: false,
-                images: [
-                    "https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=800"
-                ],
-                model3d: null,
-                description: "Sneakers di lusso con strisce verdi e rosse"
-            },
-            {
-                id: 4,
-                name: "Adidas Yeezy Boost 350",
-                category: "Sneakers",
-                price: "€280.00",
-                sizes: ["39", "40", "41", "42"],
-                available: true,
-                images: [
-                    "https://images.unsplash.com/photo-1579446565308-427218a2c60e?w=800",
-                    "https://images.unsplash.com/photo-1595044426077-d36d9236d54a?w=800"
-                ],
-                model3d: null,
-                description: "Yeezy Boost 350 V2"
-            },
-            {
-                id: 5,
-                name: "Borsa Gucci Marmont",
-                category: "Borsa",
-                price: "€1.200,00",
-                sizes: ["Unica"],
-                available: true,
-                images: [
-                    "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=800",
-                    "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=800"
-                ],
-                model3d: null,
-                description: "Borsa iconica con hardware dorato"
-            },
-            {
-                id: 6,
-                name: "Orologio Rolex Submariner",
-                category: "Orologio",
-                price: "€8.500,00",
-                sizes: ["Unica"],
-                available: false,
-                images: [
-                    "https://images.unsplash.com/photo-1547996160-81dfa63595aa?w=800",
-                    "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=800"
-                ],
-                model3d: "https://modelviewer.dev/shared-assets/models/NeilArmstrong.glb",
-                description: "Orologio di lusso subacqueo"
+                description: "Iconiche sneakers in pelle premium - PRODOTTO DI TEST"
             }
         ];
 
-        // Categorie per il menu di navigazione
+        // Categorie per il menu di navigazione (senza "Scarpe per bambini")
         const categories = [
-            'Tutti', 'Sneakers', 'Scarpe per bambini', 'Scarpe da uomo', 
+            'Tutti', 'Sneakers', 'Scarpe da uomo', 
             'Scarpe da donna', 'Ciabatte', 'Giacca invernale', 'Giacca', 
             'Felpe', 'Pantaloni', 'Maglietta', 'Borsa', 'Tuta sportiva', 
             'Cintura', 'Cappello', 'Occhiali da sole', 'Orologio'
@@ -478,19 +486,46 @@
             renderProducts();
         }
 
-        // Render menu di navigazione
+        // Render menu di navigazione (tendina)
         function renderNavMenu() {
-            const navMenu = document.getElementById('navMenu');
-            navMenu.innerHTML = '';
+            const menu = document.getElementById('categoryMenu');
+            menu.innerHTML = '';
             
             categories.forEach(category => {
-                const button = document.createElement('button');
-                button.className = 'nav-btn' + (category === currentCategory ? ' active' : '');
-                button.textContent = category;
-                button.onclick = () => filterProducts(category);
-                navMenu.appendChild(button);
+                const item = document.createElement('button');
+                item.className = 'category-item' + (category === currentCategory ? ' active' : '');
+                item.textContent = category;
+                item.onclick = () => {
+                    filterProducts(category);
+                    closeCategoryMenu();
+                };
+                menu.appendChild(item);
             });
         }
+
+        // Apri/chiudi il menu a tendina
+        function toggleCategoryMenu() {
+            const menu = document.getElementById('categoryMenu');
+            const btn = document.getElementById('categoryBtn');
+            menu.classList.toggle('open');
+            btn.classList.toggle('open');
+        }
+
+        // Chiudi il menu
+        function closeCategoryMenu() {
+            const menu = document.getElementById('categoryMenu');
+            const btn = document.getElementById('categoryBtn');
+            menu.classList.remove('open');
+            btn.classList.remove('open');
+        }
+
+        // Chiudi il menu se clicchi fuori
+        document.addEventListener('click', function(event) {
+            const dropdown = document.querySelector('.category-dropdown');
+            if (dropdown && !dropdown.contains(event.target)) {
+                closeCategoryMenu();
+            }
+        });
 
         // Filtra prodotti
         function filterProducts(category) {
@@ -693,10 +728,11 @@
         // Acquista su Instagram
         function buyOnInstagram(product) {
             const size = currentSizes[product.id] || (product.sizes ? product.sizes[0] : '');
-            const productName = encodeURIComponent(product.name);
-            const productSize = encodeURIComponent(size);
             
-            const message = `Ciao! Sono interessato all'articolo: ${productName} (Taglia: ${productSize}). È ancora disponibile?`;
+            // Costruisci il messaggio SENZA codificare i singoli pezzi
+            const message = `Ciao! Sono interessato all'articolo: ${product.name} (Taglia: ${size}). È ancora disponibile?`;
+            
+            // Codifica UNA SOLA VOLTA l'intero messaggio
             const instagramUrl = `https://ig.me/m/87shopp_?text=${encodeURIComponent(message)}`;
             
             window.open(instagramUrl, '_blank');
