@@ -1,0 +1,22 @@
+{
+  "prodotti": [
+    {
+      "id": 1,
+      "name": "fidate fra",
+      "category": "Sneakers",
+      "price": "111111",
+      "sizes": [
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44"
+      ],
+      "available": true,
+      "description": "",
+      "images": [],
+      "model3d": ""
+    }
+  ]
+}
