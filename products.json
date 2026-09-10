@@ -1,21 +1,98 @@
 {
   "prodotti": [
     {
-      "name": ".",
+      "name": "LV SKATE",
       "category": "Sneakers",
-      "price": ".",
+      "price": "99,99",
       "available": true,
-      "description": "",
+      "description": "-qualità 1:1\n-PAGAMENTI: pay pal, bonifico istantaneo, \ncontanti(prima dell’ordine)",
       "id": 1,
       "sizes": [
+        "35",
+        "37",
+        "38",
+        "36",
         "39",
         "40",
         "41",
         "42",
         "43",
-        "44"
+        "44",
+        "45",
+        "46"
       ],
-      "colors": [],
+      "colors": [
+        {
+          "name": "nero e bianco",
+          "color1": "#000000",
+          "color2": "#ffffff",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789066953703.png"
+          ]
+        },
+        {
+          "name": "bianco e nero",
+          "color1": "#ffffff",
+          "color2": "#000000",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789067065583.png"
+          ]
+        },
+        {
+          "name": "bianco e beige",
+          "color1": "#ffffff",
+          "color2": "#f5f5dc",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789067105073.png"
+          ]
+        },
+        {
+          "name": "bianco e blu",
+          "color1": "#ffffff",
+          "color2": "#0000ff",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789067164470.png"
+          ]
+        },
+        {
+          "name": "bianco e verde",
+          "color1": "#ffffff",
+          "color2": "#008000",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789067212604.png"
+          ]
+        },
+        {
+          "name": "multicolor",
+          "color1": "#808080",
+          "color2": "#ffffff",
+          "color3": "#000000",
+          "images": [
+            "/uploads/pasted-image-1789067307469.png"
+          ]
+        },
+        {
+          "name": "bianco e grigio",
+          "color1": "#ffffff",
+          "color2": "#808080",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789067365418.png"
+          ]
+        },
+        {
+          "name": "nere e bianche",
+          "color1": "#000000",
+          "color2": "#ffffff",
+          "color3": "",
+          "images": []
+        }
+      ],
       "images": [],
       "model3d": ""
     }
