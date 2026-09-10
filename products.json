@@ -275,6 +275,77 @@
       ],
       "images": [],
       "model3d": ""
+    },
+    {
+      "name": "LV TRAINER",
+      "category": "Sneakers",
+      "price": "94,99€",
+      "available": true,
+      "description": "|Qualità 1:1|Pagamenti: PayPal, bonifico istantaneo, \ncontanti(prima dell’ordine)|",
+      "id": 4,
+      "sizes": [
+        "35",
+        "36",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45",
+        "46"
+      ],
+      "colors": [
+        {
+          "name": "blu",
+          "color1": "#0000ff",
+          "color2": "",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789071202114.png"
+          ]
+        },
+        {
+          "name": "nero",
+          "color1": "#000000",
+          "color2": "",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789071233472.png"
+          ]
+        },
+        {
+          "name": "rosa",
+          "color1": "#ffc0cb",
+          "color2": "",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789071273376.png"
+          ]
+        },
+        {
+          "name": "azzurro",
+          "color1": "#6495ed",
+          "color2": "",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789071295731.png"
+          ]
+        },
+        {
+          "name": "beige",
+          "color1": "#f5f5dc",
+          "color2": "",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789071353549.png"
+          ]
+        }
+      ],
+      "images": [],
+      "model3d": ""
     }
   ]
 }
