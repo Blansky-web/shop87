@@ -551,6 +551,111 @@
       ],
       "images": [],
       "model3d": ""
+    },
+    {
+      "name": "NEW BALANCE 1906R",
+      "category": "Sneakers",
+      "price": "69,99€",
+      "available": true,
+      "description": "|Qualità 1:1|Pagamenti: PayPal, bonifico istantaneo, \ncontanti(prima dell’ordine)|INVIAMI LA FOTO DEL \nMODELLO SU INSTAGRAM",
+      "id": 7,
+      "sizes": [
+        "35",
+        "36",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45",
+        "46"
+      ],
+      "colors": [
+        {
+          "name": "DIVERSI COLORI",
+          "color1": "#FF0000",
+          "color2": "",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789073770509.png"
+          ]
+        }
+      ],
+      "images": [],
+      "model3d": ""
+    },
+    {
+      "name": "ASICS KAYANO",
+      "category": "Sneakers",
+      "price": "69,99€",
+      "available": true,
+      "description": "|Qualità 1:1|Pagamenti: PayPal, bonifico istantaneo, \ncontanti(prima dell’ordine)|INVIAMI LA FOTO DEL \nMODELLO SU INSTAGRAM",
+      "id": 8,
+      "sizes": [
+        "35",
+        "36",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45",
+        "46"
+      ],
+      "colors": [
+        {
+          "name": "TUTTI I COLORI",
+          "color1": "#FF0000",
+          "color2": "",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789073830718.png"
+          ]
+        }
+      ],
+      "images": [],
+      "model3d": ""
+    },
+    {
+      "name": "SAUCONY OMNI 9",
+      "category": "Sneakers",
+      "price": "69,99€",
+      "available": true,
+      "description": "|Qualità 1:1|Pagamenti: PayPal, bonifico istantaneo, \ncontanti(prima dell’ordine)|INVIAMI LA FOTO DEL \nMODELLO SU INSTAGRAM",
+      "id": 9,
+      "sizes": [
+        "35",
+        "36",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45",
+        "46"
+      ],
+      "colors": [
+        {
+          "name": "TANTI COLORI",
+          "color1": "#FF0000",
+          "color2": "",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789074332270.png"
+          ]
+        }
+      ],
+      "images": [],
+      "model3d": ""
     }
   ]
 }
