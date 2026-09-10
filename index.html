@@ -78,7 +78,6 @@ body.modal-open{overflow:hidden}
 .product-price{font-size:1.2rem;color:var(--gold);font-weight:600;letter-spacing:1px;margin-top:2px}
 .tap-hint{font-size:.6rem;color:var(--gold);letter-spacing:2px;text-transform:uppercase;font-weight:500;margin-top:6px;opacity:.7;transition:opacity var(--t-fast)}
 .product-card:hover .tap-hint{opacity:1}
-/* ============ MODALE DETTAGLIO ============ */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);z-index:1000;display:none;align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity var(--t-smooth)}
 .modal-overlay.open{display:flex;opacity:1}
 .modal{background:var(--bg-secondary);border:1px solid var(--border-hover);max-width:1000px;width:100%;max-height:90vh;overflow-y:auto;position:relative;animation:modalSlideUp .4s cubic-bezier(.16,1,.3,1);box-shadow:0 40px 100px rgba(0,0,0,.8),0 0 60px rgba(212,175,55,.2)}
@@ -114,13 +113,16 @@ body.modal-open{overflow:hidden}
 .color-swatch:hover{transform:scale(1.15);border-color:rgba(212,175,55,.5)}
 .color-swatch.active{border-color:var(--gold);transform:scale(1.15);box-shadow:0 0 0 2px rgba(212,175,55,.3),0 0 15px rgba(212,175,55,.6),inset 0 0 0 1px rgba(255,255,255,.2)}
 .color-swatch.active::after{content:'✓';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1rem;text-shadow:0 0 4px rgba(0,0,0,.9),0 0 8px rgba(0,0,0,.7)}
-.modal-buy-button{width:100%;padding:18px;background:var(--gold);color:var(--bg-primary);border:2px solid var(--gold);cursor:pointer;font-family:'Inter',sans-serif;font-size:.9rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;transition:all var(--t-smooth);position:relative;overflow:hidden;margin-top:8px}
+/* ============ MESSAGGIO AIUTO TAGLIA ============ */
+.modal-help-message{display:none;font-size:.75rem;color:var(--gold);letter-spacing:2px;text-transform:uppercase;font-weight:600;text-align:center;padding:12px;background:rgba(212,175,55,.08);border:1px solid rgba(212,175,55,.25);margin-top:8px;transition:all var(--t-smooth)}
+.modal-help-message.visible{display:block;animation:pulseHelp 2s ease-in-out infinite}
+.modal-help-message.success{background:rgba(212,175,55,.15);border-color:var(--gold);color:var(--gold-light);animation:none}
+@keyframes pulseHelp{0%,100%{opacity:.6}50%{opacity:1}}
+.modal-buy-button{width:100%;padding:18px;background:var(--gold);color:var(--bg-primary);border:2px solid var(--gold);cursor:pointer;font-family:'Inter',sans-serif;font-size:.9rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;transition:all var(--t-smooth);position:relative;overflow:hidden;margin-top:0}
 .modal-buy-button:hover:not(:disabled){background:var(--gold-light);border-color:var(--gold-light);letter-spacing:5px;transform:translateY(-2px);box-shadow:0 10px 30px rgba(212,175,55,.4)}
 .modal-buy-button:disabled{background:transparent;color:var(--text-muted);border-color:rgba(255,255,255,.1);cursor:not-allowed;letter-spacing:3px}
-.modal-buy-button:disabled::before{display:none}
 .modal-close-btn{width:100%;padding:12px;background:transparent;color:var(--text-secondary);border:1px solid var(--border);cursor:pointer;font-family:'Inter',sans-serif;font-size:.75rem;font-weight:500;letter-spacing:3px;text-transform:uppercase;transition:all var(--t-fast);margin-top:8px}
 .modal-close-btn:hover{border-color:var(--gold);color:var(--gold-light);letter-spacing:4px}
-/* Footer, notifiche, ecc. */
 model-viewer{width:100%;height:100%;background:#0a0a0a}
 .footer{background:var(--bg-secondary);text-align:center;padding:60px 20px 40px;margin-top:80px;border-top:1px solid var(--border);position:relative}
 .footer::before{content:'';position:absolute;top:-1px;left:50%;transform:translateX(-50%);width:200px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
@@ -159,7 +161,6 @@ model-viewer{width:100%;height:100%;background:#0a0a0a}
 .tap-hint{font-size:.55rem;margin-top:4px}
 .footer{padding:40px 15px 30px;margin-top:50px}
 .footer .logo{font-size:1.8rem;letter-spacing:4px}
-/* Modale mobile: si apre dal basso */
 .modal-overlay{padding:0;align-items:flex-end}
 .modal{max-height:95vh;border-radius:20px 20px 0 0;animation:modalSlideFromBottom .4s cubic-bezier(.16,1,.3,1)}
 @keyframes modalSlideFromBottom{from{opacity:0;transform:translateY(100%)}to{opacity:1;transform:translateY(0)}}
@@ -171,6 +172,7 @@ model-viewer{width:100%;height:100%;background:#0a0a0a}
 .color-swatch{width:30px;height:30px}
 .modal-buy-button{padding:16px;font-size:.8rem;letter-spacing:3px}
 .modal-close-btn{padding:11px;font-size:.7rem;letter-spacing:2px}
+.modal-help-message{font-size:.65rem;padding:10px;letter-spacing:1px}
 .copy-notification{font-size:.75rem;padding:12px 18px;bottom:20px}
 }
 ::-webkit-scrollbar{width:8px;height:8px}
@@ -207,7 +209,6 @@ model-viewer{width:100%;height:100%;background:#0a0a0a}
 </div>
 </footer>
 
-<!-- MODALE DETTAGLIO PRODOTTO -->
 <div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
 <div class="modal" id="modalContent" onclick="event.stopPropagation()">
 <button class="modal-close-x" onclick="closeModal()" aria-label="Chiudi">✕</button>
@@ -323,11 +324,9 @@ return;
 filteredProducts.forEach(function(product){container.appendChild(createProductCard(product));});
 }
 
-// ============ CARD GRIGLIA (semplice: foto, nome, prezzo) ============
 function createProductCard(product){
 const card=document.createElement('div');
 card.className='product-card'+(product.available?'':' sold-out');
-// Click sulla card apre modale (solo se disponibile)
 if(product.available){
 card.onclick=function(){openModal(product.id);};
 }
@@ -348,7 +347,6 @@ img.src=initialImages[0];
 img.alt=product.name;
 img.loading='lazy';
 imageContainerInner.appendChild(img);
-// Swipe immagini nella griglia
 if(initialImages.length>1){
 let tStartX=0,tEndX=0;
 let localIndex=0;
@@ -360,11 +358,15 @@ if(Math.abs(diff)>50){
 if(diff>0){localIndex=(localIndex+1)%initialImages.length;}
 else{localIndex=(localIndex-1+initialImages.length)%initialImages.length;}
 img.src=initialImages[localIndex];
+const dots=imageContainer.querySelectorAll('.gallery-dot');
+dots.forEach(function(d,i){
+if(i===localIndex){d.classList.add('active');}
+else{d.classList.remove('active');}
+});
 }
 },{passive:true});
 }
 imageContainer.appendChild(imageContainerInner);
-// Pallini galleria griglia
 if(initialImages.length>1){
 const galleryNav=document.createElement('div');
 galleryNav.className='gallery-nav';
@@ -376,7 +378,6 @@ galleryNav.appendChild(dot);
 imageContainer.appendChild(galleryNav);
 }
 card.appendChild(imageContainer);
-// Info: nome, categoria, prezzo, tap hint
 const info=document.createElement('div');
 info.className='product-info';
 const name=document.createElement('h3');
@@ -423,7 +424,6 @@ else if(colors.length===3){return 'linear-gradient(135deg, '+colors[0]+' 0%, '+c
 return '#333';
 }
 
-// ============ APERTURA MODALE ============
 function openModal(productId){
 const product=productsData.find(function(p){return p.id===productId;});
 if(!product||!product.available)return;
@@ -435,7 +435,6 @@ renderModal();
 document.body.classList.add('modal-open');
 const overlay=document.getElementById('modalOverlay');
 overlay.classList.add('open');
-// Scroll del modal in alto
 const modalContent=document.getElementById('modalContent');
 if(modalContent){modalContent.scrollTop=0;}
 }
@@ -459,11 +458,9 @@ document.addEventListener('keydown',function(e){
 if(e.key==='Escape'&&modalProductId){closeModal();}
 });
 
-// ============ RENDER MODALE ============
 function renderModal(){
 const product=productsData.find(function(p){return p.id===modalProductId;});
 if(!product)return;
-// Determina immagini da mostrare
 let images=product.images||[];
 if(modalSelectedColor!==null&&product.colors&&product.colors[modalSelectedColor]&&product.colors[modalSelectedColor].images&&product.colors[modalSelectedColor].images.length>0){
 images=product.colors[modalSelectedColor].images;
@@ -471,17 +468,14 @@ images=product.colors[modalSelectedColor].images;
 if(images.length===0){
 images=['data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22%3E%3Crect fill=%22%23141414%22 width=%22400%22 height=%22400%22/%3E%3Ctext fill=%22%236B6B6B%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-family=%22sans-serif%22 font-size=%2220%22%3ENessuna immagine%3C/text%3E%3C/svg%3E'];
 }
-// Galleria
 const gallery=document.getElementById('modalGallery');
 gallery.innerHTML='';
-gallery.onclick=null;
 const galleryImg=document.createElement('img');
 galleryImg.className='modal-gallery-image';
 galleryImg.src=images[modalImageIndex]||images[0];
 galleryImg.alt=product.name;
 galleryImg.id='modal-main-image';
 gallery.appendChild(galleryImg);
-// Swipe modale
 let tStartX=0,tEndX=0;
 gallery.addEventListener('touchstart',function(e){tStartX=e.changedTouches[0].screenX;},{passive:true});
 gallery.addEventListener('touchend',function(e){
@@ -493,7 +487,6 @@ else{modalImageIndex=(modalImageIndex-1+images.length)%images.length;}
 updateModalImage(images);
 }
 },{passive:true});
-// Pallini galleria modale
 if(images.length>1){
 const nav=document.createElement('div');
 nav.className='gallery-nav';
@@ -506,32 +499,26 @@ nav.appendChild(dot);
 });
 gallery.appendChild(nav);
 }
-// Dettagli
 const details=document.getElementById('modalDetails');
 details.innerHTML='';
-// Nome
 const name=document.createElement('h2');
 name.className='modal-name';
 name.textContent=product.name;
 details.appendChild(name);
-// Categoria
 const cat=document.createElement('div');
 cat.className='modal-category';
 cat.textContent=product.category;
 details.appendChild(cat);
-// Prezzo
 const price=document.createElement('div');
 price.className='modal-price';
 price.textContent=product.price;
 details.appendChild(price);
-// Descrizione
 if(product.description&&product.description.trim().length>0){
 const desc=document.createElement('div');
 desc.className='modal-description';
 desc.textContent=product.description;
 details.appendChild(desc);
 }
-// Taglie
 if(product.sizes&&product.sizes.length>0){
 const sizeSection=document.createElement('div');
 sizeSection.className='modal-section';
@@ -551,7 +538,6 @@ sizeButtons.appendChild(btn);
 sizeSection.appendChild(sizeButtons);
 details.appendChild(sizeSection);
 }
-// Colori
 if(product.colors&&product.colors.length>0){
 const colorSection=document.createElement('div');
 colorSection.className='modal-section';
@@ -574,7 +560,11 @@ colorsList.appendChild(swatch);
 colorSection.appendChild(colorsList);
 details.appendChild(colorSection);
 }
-// Pulsante Acquista Ora
+// Messaggio aiuto
+const helpMessage=document.createElement('div');
+helpMessage.className='modal-help-message';
+helpMessage.id='modal-help-message';
+details.appendChild(helpMessage);
 const buyBtn=document.createElement('button');
 buyBtn.className='modal-buy-button';
 buyBtn.id='modal-buy-button';
@@ -582,15 +572,19 @@ buyBtn.textContent='Acquista Ora';
 buyBtn.disabled=true;
 buyBtn.onclick=function(){buyProduct();};
 details.appendChild(buyBtn);
-// Pulsante Chiudi
 const closeBtn=document.createElement('button');
 closeBtn.className='modal-close-btn';
 closeBtn.textContent='Chiudi';
 closeBtn.onclick=closeModal;
 details.appendChild(closeBtn);
-// Se non ci sono taglie, attiva subito il pulsante
-if(!product.sizes||product.sizes.length===0){
+const hasSizes=product.sizes&&product.sizes.length>0;
+if(!hasSizes){
 buyBtn.disabled=false;
+helpMessage.textContent='';
+helpMessage.classList.remove('visible');
+}else{
+helpMessage.textContent='⚠ Seleziona una taglia per continuare';
+helpMessage.classList.add('visible');
 }
 }
 
@@ -614,16 +608,23 @@ buttons.forEach(function(b){b.classList.remove('selected');});
 button.classList.add('selected');
 const label=document.getElementById('size-selected-label');
 if(label){label.textContent='— '+size;}
-// Attiva pulsante acquista
 const buyBtn=document.getElementById('modal-buy-button');
 if(buyBtn){buyBtn.disabled=false;}
+const helpMessage=document.getElementById('modal-help-message');
+if(helpMessage){
+helpMessage.textContent='✓ Taglia '+size+' selezionata — pronto per l\'acquisto';
+helpMessage.classList.add('success');
+setTimeout(function(){
+helpMessage.classList.remove('visible');
+helpMessage.classList.remove('success');
+},2000);
+}
 }
 
 function selectModalColor(colorIndex){
 const product=productsData.find(function(p){return p.id===modalProductId;});
 if(!product||!product.colors||!product.colors[colorIndex])return;
 modalSelectedColor=colorIndex;
-// Aggiorna pallini attivi
 const colorsList=document.getElementById('modal-colors-list');
 if(colorsList){
 const swatches=colorsList.querySelectorAll('.color-swatch');
@@ -631,7 +632,6 @@ swatches.forEach(function(sw,i){
 if(i===colorIndex){sw.classList.add('active');}
 else{sw.classList.remove('active');}
 });
-// Scroll automatico
 const activeSwatch=colorsList.querySelector('.color-swatch.active');
 if(activeSwatch){
 const listWidth=colorsList.offsetWidth;
@@ -641,10 +641,8 @@ const scrollTarget=swatchLeft-(listWidth/2)+(swatchWidth/2);
 colorsList.scrollTo({left:scrollTarget,behavior:'smooth'});
 }
 }
-// Aggiorna label
 const label=document.getElementById('modal-color-label');
 if(label){label.innerHTML='Colore <span>'+product.colors[colorIndex].name+'</span>';}
-// Aggiorna immagini
 let images=product.images||[];
 if(product.colors[colorIndex].images&&product.colors[colorIndex].images.length>0){
 images=product.colors[colorIndex].images;
@@ -652,7 +650,6 @@ images=product.colors[colorIndex].images;
 modalImageIndex=0;
 const img=document.getElementById('modal-main-image');
 if(img&&images[0]){img.src=images[0];}
-// Ricostruisci pallini galleria
 const gallery=document.getElementById('modalGallery');
 const oldNav=gallery.querySelector('.gallery-nav');
 if(oldNav)oldNav.remove();
