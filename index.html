@@ -85,7 +85,6 @@ body.modal-open{overflow:hidden}
 .product-price{font-size:1.2rem;color:var(--gold);font-weight:600;letter-spacing:1px;margin-top:2px}
 .tap-hint{font-size:.6rem;color:var(--gold);letter-spacing:2px;text-transform:uppercase;font-weight:500;margin-top:6px;opacity:.7;transition:opacity var(--t-fast)}
 .product-card:hover .tap-hint{opacity:1}
-/* MODALE */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);z-index:1000;display:none;align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity var(--t-smooth)}
 .modal-overlay.open{display:flex;opacity:1}
 .modal{background:var(--bg-secondary);border:1px solid var(--border-hover);max-width:1000px;width:100%;max-height:90vh;overflow-y:auto;position:relative;animation:modalSlideUp .4s cubic-bezier(.16,1,.3,1);box-shadow:0 40px 100px rgba(0,0,0,.8),0 0 60px rgba(212,175,55,.2)}
@@ -127,17 +126,21 @@ body.modal-open{overflow:hidden}
   border:2px solid transparent;
   transition:transform var(--t-smooth),border-color var(--t-smooth),box-shadow var(--t-smooth);
   box-shadow:0 2px 6px rgba(0,0,0,.4);
-  /* maschera circolare perfetta per il gradiente */
-  -webkit-mask-image:radial-gradient(circle,white 100%,transparent 100%);
-  mask-image:radial-gradient(circle,white 100%,transparent 100%);
+  /* IL TRUCCO: padding interno + gradiente solo dentro il content-box */
+  padding:2px;
+  box-sizing:border-box;
+  background-origin:content-box;
+  background-clip:content-box;
+  /* sfondo scuro di base: riempie l'anello attorno al gradiente */
+  background-color:#0f0f0f;
 }
 .color-swatch::before{
-  /* anello interno sottilissimo */
+  /* anello interno sottile: separa visivamente il gradiente dal bordo */
   content:'';
   position:absolute;
   inset:0;
   border-radius:50%;
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.15);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);
   pointer-events:none;
   z-index:2;
 }
@@ -225,7 +228,7 @@ model-viewer{width:100%;height:100%;background:#0a0a0a}
 .modal-price{font-size:1.4rem}
 .modal-close-x{top:12px;right:12px;width:36px;height:36px;font-size:1.1rem}
 .size-button{min-width:46px;padding:10px 12px;font-size:.75rem}
-.color-swatch{width:30px;height:30px}
+.color-swatch{width:30px;height:30px;padding:2px}
 .modal-buy-button{padding:16px;font-size:.8rem;letter-spacing:3px}
 .modal-close-btn{padding:11px;font-size:.7rem;letter-spacing:2px}
 .modal-help-message{font-size:.65rem;padding:10px;letter-spacing:1px}
