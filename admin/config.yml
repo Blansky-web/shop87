@@ -23,7 +23,6 @@ collections:
         widget: "select"
         options:
           - "Sneakers"
-          - "Scarpe per bambini"
           - "Scarpe da uomo"
           - "Scarpe da donna"
           - "Ciabatte"
