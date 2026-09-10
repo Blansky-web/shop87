@@ -2,7 +2,7 @@ backend:
   name: github
   repo: Blansky-web/shop87
   branch: main
-  base_url: https://sveltia-cms-auth.netlify.app # URL pubblico del servizio OAuth di Netlify
+  base_url: https://api.netlify.com # Questo è l'endpoint OAuth di Netlify
   auth_endpoint: /auth
 
 media_folder: "uploads"
@@ -39,4 +39,4 @@ collections:
           media_folder: "uploads/products"
           public_folder: "/uploads/products"
       - { label: "Modello 3D (.glb/.gltf)", name: "model3d", widget: "string", required: false,
-          hint: "URL del file .glb o .gltf per la visualizzazione 3D" }
+          hint: "URL del file .glb o .gltf per la visualizzazione 3D" }a
