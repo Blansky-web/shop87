@@ -378,4 +378,219 @@ option.textContent='Taglia: '+size;
 sizeSelector.appendChild(option);
 });
 sizeSelector.onchange=function(e){currentSizes[product.id]=e.target.value;};
-current
+currentSizes[product.id]=product.sizes[0];
+info.appendChild(sizeSelector);
+}
+if(product.colors&&product.colors.length>0){
+const colorsWrapper=document.createElement('div');
+colorsWrapper.className='colors-wrapper';
+const colorsLabel=document.createElement('div');
+colorsLabel.className='colors-label';
+colorsLabel.id='colors-label-'+product.id;
+colorsLabel.innerHTML='Colore: <span>'+product.colors[0].name+'</span>';
+colorsWrapper.appendChild(colorsLabel);
+const colorsList=document.createElement('div');
+colorsList.className='colors-list';
+colorsList.id='colors-list-'+product.id;
+product.colors.forEach(function(color,index){
+const swatch=document.createElement('div');
+swatch.className='color-swatch'+(index===0?' active':'');
+swatch.style.background=buildSwatchGradient(color);
+swatch.title=color.name;
+swatch.dataset.index=index;
+swatch.onclick=function(){selectColor(product.id,index);};
+colorsList.appendChild(swatch);
+});
+colorsWrapper.appendChild(colorsList);
+info.appendChild(colorsWrapper);
+currentColors[product.id]=0;
+}
+const buyButton=document.createElement('button');
+buyButton.className='buy-button'+(product.available?'':' sold-out-btn');
+if(product.available){
+buyButton.textContent='Acquista Ora';
+buyButton.onclick=function(){buyOnInstagram(product);};
+}else{
+buyButton.textContent='Esaurito';
+buyButton.disabled=true;
+}
+info.appendChild(buyButton);
+card.appendChild(info);
+return card;
+}
+
+function selectColor(productId,colorIndex){
+const product=productsData.find(function(p){return p.id===productId;});
+if(!product||!product.colors||!product.colors[colorIndex])return;
+currentColors[productId]=colorIndex;
+const card=document.querySelector('#image-container-'+productId).closest('.product-card');
+card.querySelectorAll('.color-swatch').forEach(function(sw,i){
+if(i===colorIndex){sw.classList.add('active');}
+else{sw.classList.remove('active');}
+});
+// Scroll automatico per centrare il pallino selezionato
+const colorsList=document.getElementById('colors-list-'+productId);
+if(colorsList){
+const activeSwatch=colorsList.querySelector('.color-swatch.active');
+if(activeSwatch){
+const listWidth=colorsList.offsetWidth;
+const swatchLeft=activeSwatch.offsetLeft;
+const swatchWidth=activeSwatch.offsetWidth;
+const scrollTarget=swatchLeft-(listWidth/2)+(swatchWidth/2);
+colorsList.scrollTo({left:scrollTarget,behavior:'smooth'});
+}
+}
+const label=document.getElementById('colors-label-'+productId);
+if(label){label.innerHTML='Colore: <span>'+product.colors[colorIndex].name+'</span>';}
+const colorImages=product.colors[colorIndex].images;
+if(colorImages&&colorImages.length>0){
+updateGalleryImages(productId,colorImages);
+}else if(product.images&&product.images.length>0){
+updateGalleryImages(productId,product.images);
+}
+}
+
+function updateGalleryImages(productId,images){
+const img=document.getElementById('main-image-'+productId);
+if(!img)return;
+currentImageIndex[productId]=0;
+img.src=images[0];
+const card=img.closest('.product-card');
+const oldNav=card.querySelector('.gallery-nav');
+if(oldNav)oldNav.remove();
+if(images.length>1){
+const imageContainer=card.querySelector('.image-gallery');
+const galleryNav=document.createElement('div');
+galleryNav.className='gallery-nav';
+images.forEach(function(image,index){
+const dot=document.createElement('div');
+dot.className='gallery-dot'+(index===0?' active':'');
+dot.onclick=function(){changeImage(productId,index);};
+galleryNav.appendChild(dot);
+});
+imageContainer.appendChild(galleryNav);
+}
+}
+
+function handleSwipe(productId,startX,endX){
+const swipeThreshold=50;
+const diff=startX-endX;
+const product=productsData.find(function(p){return p.id===productId;});
+if(!product)return;
+let images=product.images||[];
+if(currentColors[productId]!==undefined&&product.colors&&product.colors[currentColors[productId]]&&product.colors[currentColors[productId]].images&&product.colors[currentColors[productId]].images.length>0){
+images=product.colors[currentColors[productId]].images;
+}
+if(images.length===0)return;
+if(currentImageIndex[productId]===undefined){currentImageIndex[productId]=0;}
+if(diff>swipeThreshold){
+let newIndex=currentImageIndex[productId]+1;
+if(newIndex>=images.length)newIndex=0;
+changeImage(productId,newIndex);
+}else if(diff<-swipeThreshold){
+let newIndex=currentImageIndex[productId]-1;
+if(newIndex<0)newIndex=images.length-1;
+changeImage(productId,newIndex);
+}
+}
+
+function changeImage(productId,index){
+const img=document.getElementById('main-image-'+productId);
+const product=productsData.find(function(p){return p.id===productId;});
+if(!img||!product)return;
+let images=product.images||[];
+if(currentColors[productId]!==undefined&&product.colors&&product.colors[currentColors[productId]]&&product.colors[currentColors[productId]].images&&product.colors[currentColors[productId]].images.length>0){
+images=product.colors[currentColors[productId]].images;
+}
+if(!images[index])return;
+currentImageIndex[productId]=index;
+img.src=images[index];
+const card=img.closest('.product-card');
+if(card){
+const dots=card.querySelectorAll('.gallery-dot');
+dots.forEach(function(dot,i){
+if(i===index){dot.classList.add('active');}
+else{dot.classList.remove('active');}
+});
+}
+}
+
+function toggle3DModel(productId){
+const container=document.getElementById('image-container-'+productId);
+const product=productsData.find(function(p){return p.id===productId;});
+if(!product||!product.model3d)return;
+if(container.querySelector('model-viewer')){
+const modelViewer=container.querySelector('model-viewer');
+modelViewer.remove();
+const img=document.createElement('img');
+img.className='product-image';
+img.src=product.images[0];
+img.alt=product.name;
+img.id='main-image-'+productId;
+container.appendChild(img);
+}else{
+container.innerHTML='';
+const modelViewer=document.createElement('model-viewer');
+modelViewer.src=product.model3d;
+modelViewer.alt='Modello 3D di '+product.name;
+modelViewer.setAttribute('auto-rotate','');
+modelViewer.setAttribute('camera-controls','');
+modelViewer.setAttribute('ar','');
+modelViewer.setAttribute('ar-modes','webxr scene-viewer quick-look');
+modelViewer.setAttribute('shadow-intensity','1');
+modelViewer.style.width='100%';
+modelViewer.style.height='100%';
+container.appendChild(modelViewer);
+}
+}
+
+function buyOnInstagram(product){
+const size=currentSizes[product.id]||(product.sizes?product.sizes[0]:'');
+let colorName='';
+if(product.colors&&product.colors.length>0){
+const colorIdx=currentColors[product.id]!==undefined?currentColors[product.id]:0;
+colorName=product.colors[colorIdx].name;
+}
+let message='Ciao! Sono interessato all\'articolo: '+product.name;
+if(colorName){message+=' (Colore: '+colorName+', Taglia: '+size+')';}
+else{message+=' (Taglia: '+size+')';}
+message+='. È ancora disponibile?';
+if(navigator.clipboard&&navigator.clipboard.writeText){
+navigator.clipboard.writeText(message).then(function(){showCopyNotification();}).catch(function(){fallbackCopy(message);});
+}else{
+fallbackCopy(message);
+}
+window.open('https://ig.me/m/87shopp_','_blank');
+}
+
+function fallbackCopy(text){
+const textarea=document.createElement('textarea');
+textarea.value=text;
+textarea.style.position='fixed';
+textarea.style.opacity='0';
+document.body.appendChild(textarea);
+textarea.select();
+try{document.execCommand('copy');showCopyNotification();}catch(err){console.log('Copia fallita');}
+document.body.removeChild(textarea);
+}
+
+function showCopyNotification(){
+const existing=document.querySelector('.copy-notification');
+if(existing){existing.remove();}
+const notification=document.createElement('div');
+notification.className='copy-notification';
+notification.textContent='✓ Messaggio copiato! Incollalo nella chat di Instagram';
+document.body.appendChild(notification);
+setTimeout(function(){
+notification.style.opacity='0';
+notification.style.transition='opacity .4s';
+setTimeout(function(){
+if(notification.parentNode){notification.parentNode.removeChild(notification);}
+},400);
+},4000);
+}
+
+document.addEventListener('DOMContentLoaded',init);
+</script>
+</body>
+</html>
