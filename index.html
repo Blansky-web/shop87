@@ -178,15 +178,16 @@ model-viewer{width:100%;height:100%;background:#f5f5f5}
 .tap-hint{font-size:.55rem;margin-top:4px}
 .footer{padding:40px 15px 30px;margin-top:50px}
 .footer .logo{font-size:1.8rem;letter-spacing:4px}
-/* ============ MODALE MOBILE COMPATTA + SPAZIO IN ALTO ============ */
-.modal-overlay{padding:0;align-items:flex-end;padding-top:max(20px,env(safe-area-inset-top,20px))}
-.modal{max-height:calc(95vh - 20px);border-radius:20px 20px 0 0;animation:modalSlideFromBottom .4s cubic-bezier(.16,1,.3,1)}
+/* ============ MODALE MOBILE — PIÙ IN ALTO E BORDI CURATI ============ */
+.modal-overlay{padding:0;align-items:flex-end;padding-top:max(8px,env(safe-area-inset-top,8px))}
+.modal{max-height:calc(97vh - 8px);border-radius:24px 24px 0 0;overflow:hidden;animation:modalSlideFromBottom .4s cubic-bezier(.16,1,.3,1);border:none;box-shadow:0 -10px 40px rgba(0,0,0,.15),0 0 0 1px var(--border-hover)}
 @keyframes modalSlideFromBottom{from{opacity:0;transform:translateY(100%)}to{opacity:1;transform:translateY(0)}}
-.modal-drag-handle{display:block;width:38px;height:4px;background:rgba(0,0,0,.22);border-radius:3px;margin:6px auto 2px auto;position:relative;z-index:25;cursor:grab;cursor:-webkit-grab;flex-shrink:0}
+.modal-drag-handle{display:block;width:38px;height:4px;background:rgba(184,134,11,.35);border-radius:3px;margin:10px auto 0 auto;position:relative;z-index:25;cursor:grab;cursor:-webkit-grab;flex-shrink:0}
 .modal-drag-handle::before{content:'';position:absolute;top:-20px;left:-30px;right:-30px;bottom:-20px}
-.modal-content{grid-template-columns:1fr;grid-template-rows:auto auto}
-.modal-gallery{aspect-ratio:auto;height:38vh;max-height:340px;width:100%}
-.modal-gallery-image{object-fit:contain;background:#f5f5f5;padding:8px}
+.modal-content{grid-template-columns:1fr;grid-template-rows:auto auto;overflow-y:auto;-webkit-overflow-scrolling:touch;max-height:calc(97vh - 8px - 14px)}
+.modal-gallery{aspect-ratio:auto;height:36vh;max-height:320px;width:100%;border-radius:20px;overflow:hidden;margin:6px 12px 0 12px}
+.modal-gallery-image{object-fit:contain;background:#f5f5f5;padding:6px;border-radius:20px}
+.modal-gallery .gallery-nav{bottom:12px}
 .modal-details{padding:12px 16px 16px;gap:10px}
 .modal-name{font-size:1.15rem;margin-bottom:2px}
 .modal-category{font-size:.6rem;letter-spacing:2px;margin-bottom:0}
@@ -197,7 +198,7 @@ model-viewer{width:100%;height:100%;background:#f5f5f5}
 .modal-section{gap:6px}
 .modal-section-label{font-size:.6rem;letter-spacing:2px}
 .modal-section-label span{font-size:.6rem;margin-left:6px}
-.modal-close-x{top:8px;right:8px;width:32px;height:32px;font-size:1rem}
+.modal-close-x{top:14px;right:14px;width:32px;height:32px;font-size:1rem;background:rgba(255,255,255,.95);box-shadow:0 2px 8px rgba(0,0,0,.12)}
 .size-buttons{gap:6px}
 .size-button{min-width:42px;padding:8px 10px;font-size:.7rem}
 .color-swatch{width:26px;height:26px}
@@ -300,9 +301,12 @@ let isDragging=false;
 let canDrag=false;
 const CLOSE_THRESHOLD=100;
 
+const modalContent=modal.querySelector('.modal-content');
+
 modal.addEventListener('touchstart',function(e){
 if(window.innerWidth>768)return;
-if(modal.scrollTop>0){canDrag=false;return;}
+const scrollTop=modalContent?modalContent.scrollTop:0;
+if(scrollTop>0){canDrag=false;return;}
 const touch=e.touches[0];
 startY=touch.clientY;
 currentY=startY;
