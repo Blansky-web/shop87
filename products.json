@@ -1,19 +1,19 @@
 {
   "prodotti": [
     {
-      "name": "LV Skate",
+      "name": "LV SKATE",
       "category": "Sneakers",
-      "price": "99.99€",
+      "price": "99,99€",
       "available": true,
-      "description": "",
+      "description": "|Qualità 1:1|Pagamenti: PayPal, bonifico istantaneo, \ncontanti(prima dell’ordine)|",
       "id": 1,
       "sizes": [
+        "35",
+        "36",
+        "37",
+        "38",
         "39",
         "40",
-        "41",
-        "42",
-        "43",
-        "44",
         "41",
         "42",
         "43",
@@ -126,7 +126,7 @@
           "color2": "",
           "color3": "",
           "images": [
-            "/uploads/pasted-image-1789068546024.png"
+            "/uploads/pasted-image-1789070884191.png"
           ]
         },
         {
@@ -135,7 +135,7 @@
           "color2": "",
           "color3": "",
           "images": [
-            "/uploads/pasted-image-1789068580815.png"
+            "/uploads/pasted-image-1789070869772.png"
           ]
         },
         {
@@ -144,7 +144,7 @@
           "color2": "",
           "color3": "",
           "images": [
-            "/uploads/pasted-image-1789068746311.png"
+            "/uploads/pasted-image-1789070846246.png"
           ]
         },
         {
@@ -153,7 +153,7 @@
           "color2": "#ffc0cb",
           "color3": "",
           "images": [
-            "/uploads/pasted-image-1789068821341.png"
+            "/uploads/pasted-image-1789070835587.png"
           ]
         },
         {
@@ -162,7 +162,7 @@
           "color2": "",
           "color3": "",
           "images": [
-            "/uploads/pasted-image-1789068926095.png"
+            "/uploads/pasted-image-1789070823115.png"
           ]
         },
         {
@@ -171,7 +171,7 @@
           "color2": "#ffff00",
           "color3": "#ffffff",
           "images": [
-            "/uploads/pasted-image-1789068952330.png"
+            "/uploads/pasted-image-1789070809108.png"
           ]
         },
         {
@@ -180,7 +180,7 @@
           "color2": "#ff0000",
           "color3": "",
           "images": [
-            "/uploads/pasted-image-1789069239839.png"
+            "/uploads/pasted-image-1789070800022.png"
           ]
         },
         {
@@ -189,7 +189,7 @@
           "color2": "#b22222",
           "color3": "",
           "images": [
-            "/uploads/pasted-image-1789069445142.png"
+            "/uploads/pasted-image-1789070789925.png"
           ]
         },
         {
@@ -198,7 +198,78 @@
           "color2": "#ffffff",
           "color3": "",
           "images": [
-            "/uploads/pasted-image-1789069475475.png"
+            "/uploads/pasted-image-1789070779699.png"
+          ]
+        }
+      ],
+      "images": [],
+      "model3d": ""
+    },
+    {
+      "name": "BIRKENSTOCK",
+      "category": "Sneakers",
+      "price": "45€",
+      "available": true,
+      "description": "|Qualità 1:1|Pagamenti: PayPal, bonifico istantaneo, \ncontanti(prima dell’ordine)|",
+      "id": 3,
+      "sizes": [
+        "35",
+        "36",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45",
+        "46"
+      ],
+      "colors": [
+        {
+          "name": "marrone",
+          "color1": "#800000",
+          "color2": "",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789069954424.png"
+          ]
+        },
+        {
+          "name": "grigio",
+          "color1": "#808080",
+          "color2": "",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789069978180.png"
+          ]
+        },
+        {
+          "name": "nere",
+          "color1": "#000000",
+          "color2": "",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789070014151.png"
+          ]
+        },
+        {
+          "name": "beige",
+          "color1": "#f5f5dc",
+          "color2": "",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789070050692.png"
+          ]
+        },
+        {
+          "name": "marrone chiaro",
+          "color1": "#deb887",
+          "color2": "",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789070135049.png"
           ]
         }
       ],
