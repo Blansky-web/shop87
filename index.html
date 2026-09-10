@@ -266,11 +266,25 @@ if(data&&Array.isArray(data.prodotti)){productsData=data.prodotti;}
 }catch(e){console.warn('Errore caricamento prodotti',e);}
 }
 
+// ============ SCROLL FIX ============
 function setupScrollEffects(){
 const header=document.getElementById('header');
-window.addEventListener('scroll',function(){
-if(window.scrollY>80){header.classList.add('scrolled');}
+let isScrolled=false;
+let ticking=false;
+function updateHeader(){
+const shouldBeScrolled=window.scrollY>80;
+if(shouldBeScrolled!==isScrolled){
+isScrolled=shouldBeScrolled;
+if(shouldBeScrolled){header.classList.add('scrolled');}
 else{header.classList.remove('scrolled');}
+}
+ticking=false;
+}
+window.addEventListener('scroll',function(){
+if(!ticking){
+window.requestAnimationFrame(updateHeader);
+ticking=true;
+}
 },{passive:true});
 }
 
