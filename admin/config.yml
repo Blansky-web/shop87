@@ -33,12 +33,37 @@ collections:
                   default: ["39", "40", "41", "42", "43", "44"] }
               - { label: "Disponibile", name: "available", widget: "boolean", default: true }
               - { label: "Descrizione", name: "description", widget: "text", required: false }
-              - label: "Immagini"
+              - label: "Immagini di default (senza colore specifico)"
                 name: "images"
                 widget: "list"
                 required: false
+                hint: "Queste immagini vengono mostrate se il colore selezionato non ha immagini proprie"
                 field:
                   label: "Immagine"
                   name: "image"
                   widget: "image"
+              - label: "Colori disponibili"
+                name: "colors"
+                widget: "list"
+                required: false
+                summary: "{{fields.name}}"
+                hint: "Aggiungi una voce per ogni colore. Ogni colore può avere 1, 2 o 3 colori esadecimali."
+                fields:
+                  - { label: "Nome colore", name: "name", widget: "string", required: true,
+                      hint: "Es. 'Bianco/Nero' o 'Multicolor'" }
+                  - { label: "Colore 1 (esadecimale)", name: "color1", widget: "string", required: true,
+                      hint: "Es. #FFFFFF" }
+                  - { label: "Colore 2 (opzionale)", name: "color2", widget: "string", required: false,
+                      hint: "Es. #000000 — lascia vuoto se colore singolo" }
+                  - { label: "Colore 3 (opzionale)", name: "color3", widget: "string", required: false,
+                      hint: "Es. #FF0000 — per colori misti a 3" }
+                  - label: "Immagini per questo colore"
+                    name: "images"
+                    widget: "list"
+                    required: false
+                    hint: "Se vuoto, usa le immagini di default"
+                    field:
+                      label: "Immagine"
+                      name: "image"
+                      widget: "image"
               - { label: "Modello 3D (.glb/.gltf)", name: "model3d", widget: "string", required: false }
