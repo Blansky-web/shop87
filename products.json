@@ -346,6 +346,113 @@
       ],
       "images": [],
       "model3d": ""
+    },
+    {
+      "name": "PHARRELL WILLIAMS x ADISTAR JELLYFISH",
+      "category": "Sneakers",
+      "price": "79,99€",
+      "available": true,
+      "description": "|Qualità 1:1|Pagamenti: PayPal, bonifico istantaneo, \ncontanti(prima dell’ordine)|",
+      "id": 5,
+      "sizes": [
+        "35",
+        "36",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45",
+        "46"
+      ],
+      "colors": [
+        {
+          "name": "bianco e verde",
+          "color1": "#ffffff",
+          "color2": "#008000",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789071619635.png"
+          ]
+        },
+        {
+          "name": "bianco e nero",
+          "color1": "#ffffff",
+          "color2": "#000000",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789071669458.png"
+          ]
+        },
+        {
+          "name": "nero",
+          "color1": "#000000",
+          "color2": "",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789071724360.png"
+          ]
+        },
+        {
+          "name": "nere e bianche",
+          "color1": "#000000",
+          "color2": "#ffffff",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789071754353.png"
+          ]
+        },
+        {
+          "name": "bianco e rosso",
+          "color1": "#ffffff",
+          "color2": "#ff0000",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789071804374.png"
+          ]
+        },
+        {
+          "name": "bianco e blu",
+          "color1": "#ffffff",
+          "color2": "#0000ff",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789071842045.png"
+          ]
+        },
+        {
+          "name": "bianco e arancione",
+          "color1": "#ffffff",
+          "color2": "#ff8c00",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789071885092.png"
+          ]
+        },
+        {
+          "name": "bianco e marrone",
+          "color1": "#ffffff",
+          "color2": "#800000",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789071950349.png"
+          ]
+        },
+        {
+          "name": "fucsia",
+          "color1": "#ff00ff",
+          "color2": "",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789072036023.png"
+          ]
+        }
+      ],
+      "images": [],
+      "model3d": ""
     }
   ]
 }
