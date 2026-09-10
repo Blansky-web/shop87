@@ -10,7 +10,7 @@ public_folder: "/uploads"
 
 collections:
   - name: "prodotti"
-    label: "Prodotti"
+    label: "🛍️ I Miei Prodotti"
     files:
       - name: "lista"
         label: "Lista Prodotti"
@@ -19,51 +19,126 @@ collections:
           - label: "Prodotti"
             name: "prodotti"
             widget: "list"
-            summary: "{{fields.name}} — {{fields.price}}"
+            summary: "🛒 {{fields.name}}  •  {{fields.price}}  {{fields.available}}"
+            hint: "Clicca su un prodotto per modificarlo, oppure 'Aggiungi' per crearne uno nuovo"
             fields:
-              - { label: "ID", name: "id", widget: "number", required: true }
-              - { label: "Nome Prodotto", name: "name", widget: "string", required: true }
-              - { label: "Categoria", name: "category", widget: "select", options:
-                  ["Sneakers", "Scarpe da uomo", "Scarpe da donna",
-                   "Ciabatte", "Giacca invernale", "Giacca", "Felpe", "Pantaloni",
-                   "Maglietta", "Borsa", "Tuta sportiva", "Cintura", "Cappello",
-                   "Occhiali da sole", "Orologio"], required: true }
-              - { label: "Prezzo", name: "price", widget: "string", required: true }
-              - { label: "Taglie", name: "sizes", widget: "list", required: false,
-                  default: ["39", "40", "41", "42", "43", "44"] }
-              - { label: "Disponibile", name: "available", widget: "boolean", default: true }
-              - { label: "Descrizione", name: "description", widget: "text", required: false }
-              - label: "Immagini di default (senza colore specifico)"
-                name: "images"
+              # ===== INFO BASE =====
+              - label: "📝 Nome del prodotto"
+                name: "name"
+                widget: "string"
+                required: true
+                hint: "Es. 'LV Skate Grigie Nere e Bianche' - Scrivi il nome completo come deve apparire sul sito"
+
+              - label: "🏷️ Categoria"
+                name: "category"
+                widget: "select"
+                required: true
+                hint: "Scegli dal menu. Se non trovi la categoria giusta, scegli la più simile"
+                options:
+                  - "Sneakers"
+                  - "Scarpe da uomo"
+                  - "Scarpe da donna"
+                  - "Ciabatte"
+                  - "Giacca invernale"
+                  - "Giacca"
+                  - "Felpe"
+                  - "Pantaloni"
+                  - "Maglietta"
+                  - "Borsa"
+                  - "Tuta sportiva"
+                  - "Cintura"
+                  - "Cappello"
+                  - "Occhiali da sole"
+                  - "Orologio"
+
+              - label: "💰 Prezzo"
+                name: "price"
+                widget: "string"
+                required: true
+                hint: "Includi il simbolo € e i decimali. Esempi: '€180.00' oppure '€1.200,00'"
+
+              - label: "✅ Disponibile?"
+                name: "available"
+                widget: "boolean"
+                default: true
+                hint: "Se disattivato, il prodotto appare con il badge 'SOLD OUT' e non è acquistabile"
+
+              - label: "📄 Descrizione (opzionale)"
+                name: "description"
+                widget: "text"
+                required: false
+                hint: "Breve descrizione del prodotto. Non appare sulla card, ma può essere utile in futuro"
+
+              - label: "🔢 ID univoco"
+                name: "id"
+                widget: "number"
+                required: true
+                hint: "Un numero diverso per ogni prodotto. Usa numeri progressivi: 1, 2, 3, 4..."
+
+              # ===== TAGLIE =====
+              - label: "📏 Taglie disponibili"
+                name: "sizes"
                 widget: "list"
                 required: false
-                hint: "Queste immagini vengono mostrate se il colore selezionato non ha immagini proprie"
-                field:
-                  label: "Immagine"
-                  name: "image"
-                  widget: "image"
-              - label: "Colori disponibili"
+                hint: "Scrivi una taglia per riga e premi Invio. Esempi: 39, 40, 41, 42 per le scarpe — S, M, L, XL per i vestiti — 'Unica' per accessori"
+                default: ["39", "40", "41", "42", "43", "44"]
+
+              # ===== COLORI =====
+              - label: "🎨 Colori disponibili (opzionale)"
                 name: "colors"
                 widget: "list"
                 required: false
-                summary: "{{fields.name}}"
-                hint: "Aggiungi una voce per ogni colore. Ogni colore può avere 1, 2 o 3 colori esadecimali."
+                summary: "🎨 {{fields.name}}"
+                hint: "Aggiungi un colore per ogni variante (es. 'Bianco/Nero', 'Multicolor'). Lascia vuoto se il prodotto ha un solo colore"
                 fields:
-                  - { label: "Nome colore", name: "name", widget: "string", required: true,
-                      hint: "Es. 'Bianco/Nero' o 'Multicolor'" }
-                  - { label: "Colore 1 (esadecimale)", name: "color1", widget: "string", required: true,
-                      hint: "Es. #FFFFFF" }
-                  - { label: "Colore 2 (opzionale)", name: "color2", widget: "string", required: false,
-                      hint: "Es. #000000 — lascia vuoto se colore singolo" }
-                  - { label: "Colore 3 (opzionale)", name: "color3", widget: "string", required: false,
-                      hint: "Es. #FF0000 — per colori misti a 3" }
-                  - label: "Immagini per questo colore"
+                  - label: "Nome del colore"
+                    name: "name"
+                    widget: "string"
+                    required: true
+                    hint: "Nome che vedrà il cliente. Es. 'Bianco/Nero' oppure 'Multicolor'"
+
+                  - label: "Colore 1 (codice esadecimale)"
+                    name: "color1"
+                    widget: "string"
+                    required: true
+                    hint: "Codice colore tipo '#FFFFFF'. Cerca 'colore esadecimale' su Google se non lo sai"
+
+                  - label: "Colore 2 (opzionale)"
+                    name: "color2"
+                    widget: "string"
+                    required: false
+                    hint: "Secondo colore per colori misti. Es. '#000000'. Lascia vuoto se il colore è singolo"
+
+                  - label: "Colore 3 (opzionale)"
+                    name: "color3"
+                    widget: "string"
+                    required: false
+                    hint: "Terzo colore per colori a 3 tonalità. Lascia vuoto se non serve"
+
+                  - label: "📸 Immagini di questo colore (opzionale)"
                     name: "images"
                     widget: "list"
                     required: false
-                    hint: "Se vuoto, usa le immagini di default"
+                    hint: "Foto specifiche per questo colore. Se vuoto, verranno usate le immagini di default qui sotto"
                     field:
                       label: "Immagine"
                       name: "image"
                       widget: "image"
-              - { label: "Modello 3D (.glb/.gltf)", name: "model3d", widget: "string", required: false }
+
+              # ===== IMMAGINI DI DEFAULT =====
+              - label: "📸 Immagini di default"
+                name: "images"
+                widget: "list"
+                required: false
+                hint: "Le foto principali del prodotto. Usate quando il colore selezionato non ha immagini proprie"
+                field:
+                  label: "Immagine"
+                  name: "image"
+                  widget: "image"
+
+              # ===== MODELLO 3D =====
+              - label: "🧊 Modello 3D (opzionale)"
+                name: "model3d"
+                widget: "string"
+                required: false
+                hint: "Solo se hai un file .glb o .gltf. Incolla qui il link al modello. Lascia vuoto per la maggior parte dei prodotti"
