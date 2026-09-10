@@ -656,6 +656,251 @@
       ],
       "images": [],
       "model3d": ""
+    },
+    {
+      "name": "ASICS GEL",
+      "category": "Sneakers",
+      "price": "69,99€",
+      "available": true,
+      "description": "|Qualità 1:1|Pagamenti: PayPal, bonifico istantaneo, \ncontanti(prima dell’ordine)|INVIAMI LA FOTO DEL \nMODELLO SU INSTAGRAM",
+      "id": 10,
+      "sizes": [
+        "35",
+        "36",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45",
+        "46"
+      ],
+      "colors": [
+        {
+          "name": "TUTTI I COLORI",
+          "color1": "#FF0000",
+          "color2": "",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789074719933.png"
+          ]
+        }
+      ],
+      "images": [],
+      "model3d": ""
+    },
+    {
+      "name": "BALENCIAGA TRACK",
+      "category": "Sneakers",
+      "price": "99,99€",
+      "available": true,
+      "description": "|Qualità 1:1|Pagamenti: PayPal, bonifico istantaneo, \ncontanti(prima dell’ordine)|INVIAMI LA FOTO DEL \nMODELLO SU INSTAGRAM",
+      "id": 11,
+      "sizes": [
+        "35",
+        "36",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45",
+        "46"
+      ],
+      "colors": [
+        {
+          "name": "TUTTI I COLORI",
+          "color1": "#FF0000",
+          "color2": "",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789074838243.png"
+          ]
+        }
+      ],
+      "images": [],
+      "model3d": ""
+    },
+    {
+      "name": "NEW BALANCE 9060",
+      "category": "Sneakers",
+      "price": "69,99€",
+      "available": true,
+      "description": "|Qualità 1:1|Pagamenti: PayPal, bonifico istantaneo, \ncontanti(prima dell’ordine)|INVIAMI LA FOTO DEL \nMODELLO SU INSTAGRAM",
+      "id": 12,
+      "sizes": [
+        "35",
+        "36",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45",
+        "46"
+      ],
+      "colors": [
+        {
+          "name": "TUTTI I COLORI",
+          "color1": "#FF0000",
+          "color2": "",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789075227108.png"
+          ]
+        }
+      ],
+      "images": [],
+      "model3d": ""
+    },
+    {
+      "name": "OFF-White",
+      "category": "Sneakers",
+      "price": "79,99€",
+      "available": true,
+      "description": "|Qualità 1:1|Pagamenti: PayPal, bonifico istantaneo, \ncontanti(prima dell’ordine)|INVIAMI LA FOTO DEL \nMODELLO SU INSTAGRAM",
+      "id": 13,
+      "sizes": [
+        "35",
+        "36",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45",
+        "46"
+      ],
+      "colors": [
+        {
+          "name": "TUTTI I COLORI",
+          "color1": "#FF0000",
+          "color2": "",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789075460072.png"
+          ]
+        }
+      ],
+      "images": [],
+      "model3d": ""
+    },
+    {
+      "name": "OFF-White",
+      "category": "Sneakers",
+      "price": "69,99€",
+      "available": true,
+      "description": "|Qualità 1:1|Pagamenti: PayPal, bonifico istantaneo, \ncontanti(prima dell’ordine)|INVIAMI LA FOTO DEL \nMODELLO SU INSTAGRAM",
+      "id": 14,
+      "sizes": [
+        "35",
+        "36",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45",
+        "46"
+      ],
+      "colors": [
+        {
+          "name": "TUTTI I COLORI",
+          "color1": "#FF0000",
+          "color2": "",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789075608142.png"
+          ]
+        }
+      ],
+      "images": [],
+      "model3d": ""
+    },
+    {
+      "name": "LANVIN",
+      "category": "Sneakers",
+      "price": "84,99€",
+      "available": true,
+      "description": "|Qualità 1:1|Pagamenti: PayPal, bonifico istantaneo, \ncontanti(prima dell’ordine)|INVIAMI LA FOTO DEL \nMODELLO SU INSTAGRAM",
+      "id": 15,
+      "sizes": [
+        "35",
+        "36",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45",
+        "46"
+      ],
+      "colors": [
+        {
+          "name": "TUTTI I COLORI",
+          "color1": "#FF0000",
+          "color2": "",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789075810180.png"
+          ]
+        }
+      ],
+      "images": [],
+      "model3d": ""
+    },
+    {
+      "name": "GOLDEN GOOSE",
+      "category": "Sneakers",
+      "price": "94,99€",
+      "available": true,
+      "description": "|Qualità 1:1|Pagamenti: PayPal, bonifico istantaneo, \ncontanti(prima dell’ordine)|INVIAMI LA FOTO DEL \nMODELLO SU INSTAGRAM",
+      "id": 16,
+      "sizes": [
+        "35",
+        "36",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45",
+        "46"
+      ],
+      "colors": [
+        {
+          "name": "TUTTI I COLORI",
+          "color1": "#FF0000",
+          "color2": "",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789075936634.png"
+          ]
+        }
+      ],
+      "images": [],
+      "model3d": ""
     }
   ]
 }
