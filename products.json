@@ -2084,6 +2084,142 @@
       ],
       "images": [],
       "model3d": ""
+    },
+    {
+      "name": "MAGLIETTA LOUIS VUITTON",
+      "category": "Abbigliamento",
+      "price": "39,99€",
+      "available": true,
+      "description": "|Qualità 1:1|Pagamenti: PayPal, bonifico istantaneo, \ncontanti(prima dell’ordine)|INVIAMI LA FOTO DEL \nMODELLO SU INSTAGRAM",
+      "id": 64,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        {
+          "name": "TUTTI I COLORI E MODELLI",
+          "color1": "#000000",
+          "color2": "",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789125774267.png"
+          ]
+        }
+      ],
+      "images": [],
+      "model3d": ""
+    },
+    {
+      "name": "MAGLIETTA alo",
+      "category": "Abbigliamento",
+      "price": "39,99€",
+      "available": true,
+      "description": "|Qualità 1:1|Pagamenti: PayPal, bonifico istantaneo, \ncontanti(prima dell’ordine)|INVIAMI LA FOTO DEL \nMODELLO SU INSTAGRAM",
+      "id": 65,
+      "sizes": [
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        {
+          "name": "TANTI COLORI",
+          "color1": "#000000",
+          "color2": "",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789125871671.png"
+          ]
+        }
+      ],
+      "images": [],
+      "model3d": ""
+    },
+    {
+      "name": "MAGLIETTA DSQUARED",
+      "category": "Abbigliamento",
+      "price": "44,99€",
+      "available": true,
+      "description": "Qualità 1:1|Pagamenti: PayPal, bonifico istantaneo, \ncontanti(prima dell’ordine)|INVIAMI LA FOTO DEL \nMODELLO SU INSTAGRAM",
+      "id": 66,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        {
+          "name": "TANTI COLORI E INFINITI MODELLI",
+          "color1": "#000000",
+          "color2": "",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789126022879.png"
+          ]
+        }
+      ],
+      "images": [],
+      "model3d": ""
+    },
+    {
+      "name": "COMPLETINO HUNDER ARMOUR",
+      "category": "Abbigliamento",
+      "price": "54,99€",
+      "available": true,
+      "description": "Qualità 1:1|Pagamenti: PayPal, bonifico istantaneo, \ncontanti(prima dell’ordine)|INVIAMI LA FOTO DEL \nMODELLO SU INSTAGRAM",
+      "id": 67,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        {
+          "name": "TANTISSIMI COLORI",
+          "color1": "#000000",
+          "color2": "",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789126184761.png"
+          ]
+        }
+      ],
+      "images": [],
+      "model3d": ""
+    },
+    {
+      "name": "TUTE HUNDER ARMOUR",
+      "category": "Abbigliamento",
+      "price": "69,99€",
+      "available": true,
+      "description": "Qualità 1:1|Pagamenti: PayPal, bonifico istantaneo, \ncontanti(prima dell’ordine)|INVIAMI LA FOTO DEL \nMODELLO SU INSTAGRAM",
+      "id": 68,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        {
+          "name": "TANTI COLORI",
+          "color1": "#000000",
+          "color2": "",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789126258179.png"
+          ]
+        }
+      ],
+      "images": [],
+      "model3d": ""
     }
   ]
 }
