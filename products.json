@@ -1976,6 +1976,114 @@
       ],
       "images": [],
       "model3d": ""
+    },
+    {
+      "name": "FELPA MONCLER",
+      "category": "Abbigliamento",
+      "price": "49,99€",
+      "available": true,
+      "description": "|Qualità 1:1|Pagamenti: PayPal, bonifico istantaneo, \ncontanti(prima dell’ordine)|INVIAMI LA FOTO DEL \nMODELLO SU INSTAGRAM",
+      "id": 60,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        {
+          "name": "TUTTI I COLORI E MODELLI",
+          "color1": "#000000",
+          "color2": "",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789124686946.png"
+          ]
+        }
+      ],
+      "images": [],
+      "model3d": ""
+    },
+    {
+      "name": "FELPA POLO RALPH LAUREN",
+      "category": "Abbigliamento",
+      "price": "39,99€",
+      "available": true,
+      "description": "|Qualità 1:1|Pagamenti: PayPal, bonifico istantaneo, \ncontanti(prima dell’ordine)|INVIAMI LA FOTO DEL \nMODELLO SU INSTAGRAM",
+      "id": 61,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        {
+          "name": "TANTI COLORI E MODELLI",
+          "color1": "#000000",
+          "color2": "",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789124807559.png"
+          ]
+        }
+      ],
+      "images": [],
+      "model3d": ""
+    },
+    {
+      "name": "PANTALONE STONE ISLAND",
+      "category": "Abbigliamento",
+      "price": "54,99€",
+      "available": true,
+      "description": "|Qualità 1:1|Pagamenti: PayPal, bonifico istantaneo, \ncontanti(prima dell’ordine)|INVIAMI LA FOTO DEL \nMODELLO SU INSTAGRAM",
+      "id": 62,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        {
+          "name": "DIVERSI COLORI",
+          "color1": "#000000",
+          "color2": "",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789125041932.png"
+          ]
+        }
+      ],
+      "images": [],
+      "model3d": ""
+    },
+    {
+      "name": "PANTALONE ESSENTIAL",
+      "category": "Abbigliamento",
+      "price": "49,99€",
+      "available": true,
+      "description": "",
+      "id": 63,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        {
+          "name": "TUTTI I COLORI",
+          "color1": "#000000",
+          "color2": "",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789125115318.png"
+          ]
+        }
+      ],
+      "images": [],
+      "model3d": ""
     }
   ]
 }
