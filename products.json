@@ -2220,6 +2220,54 @@
       ],
       "images": [],
       "model3d": ""
+    },
+    {
+      "name": "PORTAFOGLIO LOUIS VUITTON",
+      "category": "Borse Donna",
+      "price": "34,99€",
+      "available": true,
+      "description": "|Qualità 1:1|Pagamenti: PayPal, bonifico istantaneo, \ncontanti(prima dell’ordine)|INVIAMI LA FOTO DEL \nMODELLO SU INSTAGRAM",
+      "id": 70,
+      "sizes": [
+        "UNICHE"
+      ],
+      "colors": [
+        {
+          "name": "NERO",
+          "color1": "#000000",
+          "color2": "",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789163007258.png"
+          ]
+        }
+      ],
+      "images": [],
+      "model3d": ""
+    },
+    {
+      "name": "PORTAFOGLIO LOUIS VUITTON",
+      "category": "Borse Donna",
+      "price": "39,99€",
+      "available": true,
+      "description": "|Qualità 1:1|Pagamenti: PayPal, bonifico istantaneo, \ncontanti(prima dell’ordine)|INVIAMI LA FOTO DEL \nMODELLO SU INSTAGRAM",
+      "id": 71,
+      "sizes": [
+        "UNICHE"
+      ],
+      "colors": [
+        {
+          "name": "NERO",
+          "color1": "#000000",
+          "color2": "",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789163084740.png"
+          ]
+        }
+      ],
+      "images": [],
+      "model3d": ""
     }
   ]
 }
