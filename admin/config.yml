@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: Blansky-web/shop87
+  repo: gabrielioo/shop87
   branch: main
   base_url: https://api.netlify.com
   auth_endpoint: /auth
