@@ -2292,6 +2292,54 @@
       ],
       "images": [],
       "model3d": ""
+    },
+    {
+      "name": "BORSA LOUIS VUITTON",
+      "category": "Borse Donna",
+      "price": "59,99€",
+      "available": true,
+      "description": "|Qualità 1:1|Pagamenti: PayPal, bonifico istantaneo, \ncontanti(prima dell’ordine)|INVIAMI LA FOTO DEL \nMODELLO SU INSTAGRAM",
+      "id": 73,
+      "sizes": [
+        "UNICHE"
+      ],
+      "colors": [
+        {
+          "name": "NERO",
+          "color1": "#000000",
+          "color2": "",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789167358822.png"
+          ]
+        }
+      ],
+      "images": [],
+      "model3d": ""
+    },
+    {
+      "name": "BORSA LOUIS VUITTON",
+      "category": "Borse Donna",
+      "price": "59,99€",
+      "available": true,
+      "description": "|Qualità 1:1|Pagamenti: PayPal, bonifico istantaneo, \ncontanti(prima dell’ordine)|INVIAMI LA FOTO DEL \nMODELLO SU INSTAGRAM",
+      "id": 73,
+      "sizes": [
+        "UNICHE"
+      ],
+      "colors": [
+        {
+          "name": "NERO",
+          "color1": "#000000",
+          "color2": "",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789167427546.png"
+          ]
+        }
+      ],
+      "images": [],
+      "model3d": ""
     }
   ]
 }
