@@ -2340,6 +2340,102 @@
       ],
       "images": [],
       "model3d": ""
+    },
+    {
+      "name": "BORSA KELLY HERMES",
+      "category": "Borse Donna",
+      "price": "59,99€",
+      "available": true,
+      "description": "|Qualità 1:1|Pagamenti: PayPal, bonifico istantaneo, \ncontanti(prima dell’ordine)|INVIAMI LA FOTO DEL \nMODELLO SU INSTAGRAM",
+      "id": 74,
+      "sizes": [
+        "UNICHE"
+      ],
+      "colors": [
+        {
+          "name": "DIVERSI COLORI E MODELLI",
+          "color1": "#000000",
+          "color2": "",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789211155949.png"
+          ]
+        }
+      ],
+      "images": [],
+      "model3d": ""
+    },
+    {
+      "name": "PORTACARTE GOYARD",
+      "category": "Altro",
+      "price": "29,99€",
+      "available": true,
+      "description": "|Qualità 1:1|Pagamenti: PayPal, bonifico istantaneo, \ncontanti(prima dell’ordine)|INVIAMI LA FOTO DEL \nMODELLO SU INSTAGRAM",
+      "id": 75,
+      "sizes": [
+        "UNICHE"
+      ],
+      "colors": [
+        {
+          "name": "TANTI COLORI",
+          "color1": "#000000",
+          "color2": "",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789211255433.png"
+          ]
+        }
+      ],
+      "images": [],
+      "model3d": ""
+    },
+    {
+      "name": "PORTACRATE LOUIS VUITTON",
+      "category": "Altro",
+      "price": "29,99€",
+      "available": true,
+      "description": "|Qualità 1:1|Pagamenti: PayPal, bonifico istantaneo, \ncontanti(prima dell’ordine)|INVIAMI LA FOTO DEL \nMODELLO SU INSTAGRAM",
+      "id": 76,
+      "sizes": [
+        "UNICHE"
+      ],
+      "colors": [
+        {
+          "name": "TANTI COLORI E MODELLI",
+          "color1": "#000000",
+          "color2": "",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789211340603.png"
+          ]
+        }
+      ],
+      "images": [],
+      "model3d": ""
+    },
+    {
+      "name": "BORSA CHANEL",
+      "category": "Borse Donna",
+      "price": "44,99€",
+      "available": true,
+      "description": "|Qualità 1:1|Pagamenti: PayPal, bonifico istantaneo, \ncontanti(prima dell’ordine)|INVIAMI LA FOTO DEL \nMODELLO SU INSTAGRAM",
+      "id": 77,
+      "sizes": [
+        "UNICHE"
+      ],
+      "colors": [
+        {
+          "name": "TANTI COLORI",
+          "color1": "#000000",
+          "color2": "",
+          "color3": "",
+          "images": [
+            "/uploads/pasted-image-1789211420753.png"
+          ]
+        }
+      ],
+      "images": [],
+      "model3d": ""
     }
   ]
 }
